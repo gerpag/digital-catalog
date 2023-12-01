@@ -1,19 +1,19 @@
 import "./App.css";
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import ProductManage from "./components/ProductManage";
+import Rubros from "./components/Rubros";
+import NavBar from "./components/NavBar";
 
 const App = () => {
   return (
     <>
-     <div className="bg-blue-600 h-screen flex justify-center items-center">
-      <h1 className="text-yellow-500 text-[100px]">
-        Bocaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, Bocaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,
-        Bocaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-      </h1>
-    </div>
-    <ProductManage/>
+      <NavBar />
+      <Routes>
+        <Route path="/inicio" element={<ProductManage />} />
+        <Route path="/rubros" element={<Rubros />} />
+      </Routes>
     </>
-   
   );
 };
 

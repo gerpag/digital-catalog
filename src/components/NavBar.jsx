@@ -6,12 +6,12 @@ const NavBar = () => {
   const links = ["INICIO", "RUBROS", "INFO", "CONTACTO"];
 
   return (
-    <div className="flex ">
+    <div className="flex">
       <div>
         <img
           src={poliRubroLogo}
           alt="Logo Polirubro"
-          className="w-24 h-24 m-6 ml-12"
+          className=" w-28 h-28 m-6 ml-24 mr-32"
         />
       </div>
       <div className="flex items-center ml-42 ">

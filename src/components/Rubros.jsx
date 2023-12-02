@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import CardsRubros from "./CardsRubros";
 const Rubros = () => {
   const colorsOne = [
     { titulo: "blanco", color: "#FFFFFF" },
@@ -49,8 +50,8 @@ const Rubros = () => {
 
   return (
     <div>
-      <div className="general ml-12 mt-6">
-        <div className="izquierda ">
+      <div className="general flex ml-20">
+        <div className="izquierda w-60">
           <div className=" ">
             <h3 className="text-xl font-bold mb-3">Colores</h3>
             <div className="">
@@ -85,7 +86,9 @@ const Rubros = () => {
             </ul>
           </div>
         </div>
-        <div className="derecha">Cards</div>
+        <div className="derecha ">
+          <CardsRubros />
+        </div>
       </div>
     </div>
   );

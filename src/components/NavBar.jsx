@@ -20,7 +20,7 @@ const NavBar = ({ isAdminLoggedIn }) => {
           {links.map((item, index) => (
             <li key={index} className="ml-36 mt-6 justify-center text-2xl">
               <Link
-                to={`/${item.toLocaleLowerCase()}`}
+                to={item==="INICIO"? "/":`/${item.toLocaleLowerCase()}`}
                 className={`hover:font-bold ${
                   location.pathname === `/${item.toLocaleLowerCase()}` ? "font-bold" : ""
                 }`}

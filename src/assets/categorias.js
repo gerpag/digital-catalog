@@ -1,0 +1,36 @@
+
+
+export const rubros=
+[ { categoria:"ALMOHADONES",
+url_img:"https://regio.com.ar/storage/8442/conversions/6FullSizeRender-3-large.jpg"},
+{ categoria:"COCINA",
+url_img:"https://regio.com.ar/storage/2713/conversions/DSC_0846.JPG-large.jpg"},
+{ categoria:"CUADROS Y TAPICES",
+url_img:"https://regio.com.ar/storage/4411/conversions/13240608_1243780748972878_1507483317188360921_n-large.jpg"},
+{ categoria:"DECO INFANTIL",
+url_img:"https://regio.com.ar/storage/2317/conversions/Captura-de-Pantalla-2021-01-06-a-la(s)-17.22.52-large.jpg"},
+{ categoria:"JARDÍN",
+url_img:"https://regio.com.ar/storage/10384/conversions/IMG_8248-large.jpg"},
+{ categoria:"LÁMPARAS",
+url_img:"https://regio.com.ar/storage/4031/conversions/DSC_0137.JPG-large.jpg"},
+{ categoria:"LIBRERÍA",
+url_img:"https://regio.com.ar/storage/245/conversions/Captura-de-Pantalla-2020-12-28-a-la(s)-13.09.50-large.jpg"},
+{ categoria:"MANTAS",
+url_img:"https://regio.com.ar/storage/285/conversions/MANTAS7.-large.jpg"},
+{ categoria:"MANTELERÍA",
+url_img:"https://regio.com.ar/storage/9409/conversions/FullSizeRender-large.jpg"},
+{ categoria:"MUEBLES",
+url_img:"https://regio.com.ar/storage/7072/conversions/IMG_5167-large.jpg"},
+{ categoria:"NAVIDAD",
+url_img:"https://www.clara.es/medio/2022/10/15/arboles-de-navidad-modernos_ad57a190_1280x1707.jpg"},
+{ categoria:"OBJETOS",
+url_img:"https://regio.com.ar/storage/1298/conversions/DSC_0633.JPG-large.jpg"},
+{ categoria:"PLANTAS",
+url_img:"https://regio.com.ar/storage/10212/conversions/IMG_6167-large.jpg"},
+{ categoria:"PORTARETRATOS",
+url_img:"https://regio.com.ar/storage/4802/conversions/DSC_0147.JPG-large.jpg"},
+{ categoria:"ROPA DE CAMA",
+url_img:"https://arredo.vtexassets.com/arquivos/ids/660159-1600-auto?v=638373316956000000&width=1600&height=auto&aspect=true"},
+]
+  
+

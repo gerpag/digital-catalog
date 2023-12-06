@@ -7,18 +7,18 @@ const NavBar = ({ isAdminLoggedIn }) => {
   const links = ["INICIO", "RUBROS", "INFO", "CONTACTO", "AGREGAR"];
 
   return (
-    <div className="flex ">
-      <div>
+    <div className="flex w-[100vw] h-[16vh] mb-[2vh] ">
+      <div className="h-full flex items-center ml-[1%] ">
         <img
           src={poliRubroLogo}
           alt="Logo Polirubro"
-          className="w-24 h-24 m-6 ml-12"
+          className="h-[80%]"
         />
       </div>
-      <div className="flex items-center ml-42 ">
-        <ul className="flex list-none">
+      <div className="flex items-center ml-42  ">
+        <ul className="flex ml-[5%] list-non w-[60vw] justify-between items-center">
           {links.map((item, index) => (
-            <li key={index} className="ml-36 mt-6 justify-center text-2xl">
+            <li key={index} className="justify-center text-2xl">
               <Link
                 to={item==="INICIO"? "/":`/${item.toLocaleLowerCase()}`}
                 className={`hover:font-bold ${

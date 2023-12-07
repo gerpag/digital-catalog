@@ -7,16 +7,18 @@ const NavBar = ({ isAdminLoggedIn }) => {
   const links = ["INICIO", "RUBROS", "INFO", "CONTACTO", "AGREGAR"];
 
   return (
-    <div className="flex w-[100vw] h-[16vh] mb-[2vh] ">
-      <div className="h-full flex items-center ml-[1%] ">
+    <div className=" box-border flex w-[100vw] h-[16vh]  fixed z-50 justify-center bg-[#f2f2f2] ">
+      <div class="flex h-[100%] w-[85%] justify-start">
+      
+      <div className="h-full flex items-center ">
         <img
           src={poliRubroLogo}
           alt="Logo Polirubro"
           className="h-[80%]"
         />
       </div>
-      <div className="flex items-center ml-42  ">
-        <ul className="flex ml-[5%] list-non w-[60vw] justify-between items-center">
+      <div className="flex items-center ">
+        <ul className="flex ml-[5%] list-non w-[60vw] justify-between items-center ">
           {links.map((item, index) => (
             <li key={index} className="justify-center text-2xl">
               <Link
@@ -30,6 +32,7 @@ const NavBar = ({ isAdminLoggedIn }) => {
             </li>
           ))}
         </ul>
+      </div>
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ const ProductManage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center pt-[17vh]">
       <form encType="multipart/form-data" onSubmit={handleSubmit} className="bg-white p-8 shadow-md rounded max-w-md w-full">
         <div className="mb-3 flex items-center">
           <label htmlFor="image" className="w-1/3 pr-4 text-right">

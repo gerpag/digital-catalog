@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import Info from "./components/Info";
 import Contacto from "./components/Contacto";
+import Footer from "./components/footer";
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/info" element={<Info />} />
         <Route path="/contacto" element={<Contacto />} />
       </Routes>
+      <Footer/>
     </>
   );
 };

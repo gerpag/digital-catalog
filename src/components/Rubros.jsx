@@ -50,7 +50,7 @@ const Rubros = () => {
 
   return (
     <div>
-      <div className="general flex ml-20">
+      <div className="general flex ml-20 pt-[17vh]">
         <div className="izquierda w-60">
           <div className=" ">
             <h3 className="text-xl font-bold mb-3">Colores</h3>

@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const NavBar = ({ isAdminLoggedIn }) => {
   const location = useLocation();
-  const links = ["INICIO", "RUBROS", "INFO", "CONTACTO", "AGREGAR"];
+  const links = ["INICIO", "RUBROS", "INFO", "CONTACTO", "AGREGAR","LOGIN"];
 
   return (
     <div className=" box-border flex w-[100vw] h-[16vh]  fixed z-50 justify-center bg-[#f2f2f2] ">

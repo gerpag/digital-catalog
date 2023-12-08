@@ -24,16 +24,16 @@ const NavBar = ({ isAdminLoggedIn,handleModal,modal }) => {
 
       {screenWidth>=1024 ? 
        
-      (<div class="flex h-[100%] w-[85%] justify-start">
+      (<div class="flex h-[100%] w-[100%] justify-start">
       
-      <div className="h-full flex items-center ">
+      <div className="h-full flex items-center ml-[3.5vw] ">
         <img
           src={poliRubroLogo}
           alt="Logo Polirubro"
           className="h-[80%]"
         />
       </div>
-      <div className="flex items-center ">
+      <div className="flex items-center ml-[3vw]" >
         <ul className="flex ml-[5%] list-non w-[60vw] justify-between items-center ">
           {links.map((item, index) => (
             <li key={index} className="justify-center text-2xl">

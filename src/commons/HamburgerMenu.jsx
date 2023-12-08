@@ -9,14 +9,11 @@ function HamburguerMenu({ handleModal, modal }) {
 
   const [activo,setActivo]=useState(false);
 
-  const handleActivo=()=>{
-    if(!activo){setActivo(!activo)}
-    
-    if(activo){
-      setActivo(!activo)
-      setTimeout(()=>{handleModal()},1000)
-    }
-  }
+  const handleActivo = () => {
+    return activo
+      ? (setActivo(!activo), setTimeout(() => handleModal(), 1000))
+      : setActivo(!activo);
+  };
 
   useEffect(()=>{
     handleActivo()

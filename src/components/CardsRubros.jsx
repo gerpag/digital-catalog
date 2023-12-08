@@ -1,43 +1,18 @@
 import React from "react";
 
-const CardsRubros = () => {
+const CardsRubros = ({ products }) => {
   return (
-    <div className="grid grid-cols-3 gap-3">
-      <img
-        className=" w-[470px] h-[350px] rounded-lg "
-        src="../../public/lamparas.jpg"
-        alt="imagen de aire libre"
-      />
-      <img
-        className="w-[470px] h-[350px] rounded-lg"
-        src="../../public/lamparas.jpg"
-        alt="imagen de aire libre"
-      />
-      <img
-        className="w-[470px] h-[350px] rounded-lg"
-        src="../../public/lamparas.jpg"
-        alt="imagen de aire libre"
-      />
-      <img
-        className="w-[470px] h-[350px] rounded-lg"
-        src="../../public/lamparas.jpg"
-        alt="imagen de aire libre"
-      />
-      <img
-        className="w-[470px] h-[350px] rounded-lg"
-        src="../../public/lamparas.jpg"
-        alt="imagen de aire libre"
-      />
-      <img
-        className="w-[470px] h-[350px] rounded-lg"
-        src="../../public/lamparas.jpg"
-        alt="imagen de aire libre"
-      />
-      <img
-        className="w-[470px] h-[350px] rounded-lg"
-        src="../../public/lamparas.jpg"
-        alt="imagen de aire libre"
-      />
+
+    <div className="grid grid-cols-3 gap-3 ">
+      {products.map((item, i) => (
+        <img
+          key={i}
+          className=" w-[470px] h-[280px] rounded-lg "
+          src={item.url_img}
+          alt={item.name}
+        />
+      ))}
+
     </div>
   );
 };

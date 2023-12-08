@@ -2,6 +2,7 @@ import React from "react";
 
 const CardsRubros = ({ products }) => {
   return (
+
     <div className="grid grid-cols-3 gap-3 ">
       {products.map((item, i) => (
         <img
@@ -11,6 +12,7 @@ const CardsRubros = ({ products }) => {
           alt={item.name}
         />
       ))}
+
     </div>
   );
 };

@@ -164,7 +164,7 @@ const Rubros = () => {
 
   return (
     <div>
-      <div className="general flex ml-12">
+      <div className="general flex ml-12 pt-[17vh]">
         <div className="izquierda w-36 mr-32">
           <div>
             <h3 className="text-xl font-bold mb-3">Colores</h3>

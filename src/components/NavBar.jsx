@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import {FaBars } from "react-icons/fa";
 
 
-const NavBar = ({ isAdminLoggedIn }) => {
+const NavBar = ({ isAdminLoggedIn,handleModal,modal }) => {
   const location = useLocation();
   const links = ["INICIO", "RUBROS", "INFO", "CONTACTO", "AGREGAR","LOGIN"];
 
@@ -20,7 +20,7 @@ const NavBar = ({ isAdminLoggedIn }) => {
 
   return (
     <>
-    <div className="  flex w-[100vw] h-[16vh]  fixed z-50 justify-center bg-[#f2f2f2] items-center ">
+    <div className= {`${modal && "opacity-50 brightness-50 pointer-events-none"}  flex w-[100vw] h-[16vh]  fixed z-40 justify-center bg-[#f2f2f2] items-center`} >
 
       {screenWidth>=1024 ? 
        
@@ -50,7 +50,7 @@ const NavBar = ({ isAdminLoggedIn }) => {
          
         </ul>
       </div>
-      </div>):(<div class="flex h-[70%] w-[85%] justify-between items-center">   
+      </div>):(!modal && <div class="flex h-[70%] w-[85%] justify-between items-center">   
         <div className="h-full flex items-center ml-2% ">
         <img
           src={poliRubroLogo}
@@ -59,7 +59,7 @@ const NavBar = ({ isAdminLoggedIn }) => {
         />
       </div>
 
-      <FaBars style={{fontSize:"1.5rem", marginRight:"2%"}}/>
+      <FaBars onClick={handleModal} style={{fontSize:"1.5rem", marginRight:"2%"}}/>
 
          </div>)}
     </div>

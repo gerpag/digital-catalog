@@ -9,29 +9,29 @@ import Info from "./components/Info";
 import Contacto from "./components/Contacto";
 import Footer from "./components/footer";
 import HamburguerMenu from "./commons/HamburgerMenu";
-
+import Login from "./components/Login";
 
 const App = () => {
-
-
-  const [modalOpen,setModalOpen]=useState(false)
-  const handleModal=()=>{
-    setModalOpen(!modalOpen)
-  }
-
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleModal = () => {
+    setModalOpen(!modalOpen);
+  };
 
   return (
     <>
       <NavBar handleModal={handleModal} modal={modalOpen} />
-      {modalOpen && <HamburguerMenu handleModal={handleModal} modal={modalOpen}/>}
+      {modalOpen && (
+        <HamburguerMenu handleModal={handleModal} modal={modalOpen} />
+      )}
       <Routes>
-        <Route path="/" element={<Home modal={modalOpen}/>} />
+        <Route path="/" element={<Home modal={modalOpen} />} />
         <Route path="/agregar" element={<ProductManage />} />
         <Route path="/rubros" element={<Rubros />} />
         <Route path="/info" element={<Info />} />
         <Route path="/contacto" element={<Contacto />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </>
   );
 };

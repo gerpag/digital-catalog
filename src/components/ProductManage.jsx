@@ -126,9 +126,7 @@ const subcategories = {
           ))}
         </select>
       </div>
-      {subCategories && (
-            <option value="" disabled>Selecciona una categoría</option>
-          )}
+      
       {selectedCategory && (
         <div className="mb-3 flex items-center">
           <label htmlFor="subCategory" className="w-1/3 pr-4 text-right">

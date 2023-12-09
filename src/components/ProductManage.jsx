@@ -6,27 +6,32 @@ const ProductManage = () => {
 
   const [selectedCategory, setSelectedCategory] = useState('');
   const [subCategories, setSubCategories] = useState([]);
+  const [selectedColor, setSelectedColor] = useState('');
 
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    
-    try {
-      const response = await axios.post('http://localhost:4000/api/v1/product/add', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
-      console.log('Product added successfully:', response.data);
-    } catch (error) {
-      console.error('Error adding product:', error.message);
-    }
-  };
-
-
+  const colours = [
+    "amarillo",
+    "verde",
+    "turquesa",
+    "celeste",
+    "azul",
+    "naranja",
+    "rojo",
+    "bordó",
+    "violeta",
+    "rosa",
+    "blanco",
+    "crudo",
+    "beige",
+    "marrón (ladrillo/madera)", 
+    "plateado",
+    "dorado",
+    "negro",
+    "gris",
+    "transparente",
+    "multicolor",
+  ];
+  
   const categories = [
     "aire_libre",
     "alfombras",
@@ -52,8 +57,8 @@ const ProductManage = () => {
     "telefonos",
     "textil",
     "tocador",
-];
-const subcategories = {
+  ];
+  const subcategories = {
   aire_libre: ["picnic ,camping ,playa"],
   alfombras: [],
   bazar_cocina: ["bar", "botellas/jarras", "cubiertos/utensillos", "electro (tostadoras, licuadoras, jugueras, cafetera electrica, multipro)", "especieros", "frascos / latas", "fruteras / paneras", "fuentes / bandejas", "infusiones (te mate cafe, desayuno)", "ollas / sartenes", "tablas / apoyas", "termos", "vajilla", "vasos / copas", "varios bazar", "productos (packagins)"],
@@ -80,9 +85,27 @@ const subcategories = {
   tocador: ["aseo", "cosmetica", "frascos / perfumes", "hombre", "peluqueria", "varios tocador o baño"],
 };
 
-  const handleCategoryChange = (event) => {
-    const selectedCategory = event.target.value;
-    const categorySubcategories = subcategories[selectedCategory] || [];
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    
+    try {
+      const response = await axios.post('http://localhost:4000/api/v1/product/add', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      console.log('Product added successfully:', response.data);
+    } catch (error) {
+      console.error('Error adding product:', error.message);
+    }
+  };
+
+const handleCategoryChange = (event) => {
+  const selectedCategory = event.target.value;
+  const categorySubcategories = subcategories[selectedCategory] || [];
     
     setSelectedCategory(selectedCategory);
     setSubCategories(categorySubcategories.length > 0 ? categorySubcategories : ["Ninguna"]);
@@ -138,7 +161,7 @@ const subcategories = {
           >
           
             {!subCategories.includes("Ninguna") && (
-              <option value="" >Selecciona una subcategoría</option>
+              <option value="" disabled selected>Selecciona una subcategoría</option>
             )}
             {subCategories.map((subCategory) => 
             (
@@ -183,16 +206,27 @@ const subcategories = {
           />
         </div>
 
+       
         <div className="mb-3 flex items-center">
           <label htmlFor="color" className="w-1/3 pr-4 text-right">
             Color:
           </label>
-          <input
-            type="text"
+          <select
             name="color"
+            value={selectedColor}
+            onChange={(e) => setSelectedColor(e.target.value)}
             className="w-2/3 p-2 border border-gray-300 rounded"
-          />
+          >
+            <option value="" disabled>Selecciona un color</option>
+            {colours.map((color) => (
+              <option key={color} value={color}>
+                {color}
+              </option>
+            ))}
+          </select>
         </div>
+
+
 
         <div className="mb-3 flex items-center">
           <label htmlFor="dimensions" className="w-1/3 pr-4 text-right">

@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
-import axios from 'axios';
-
+import React, { useState } from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 const ProductManage = () => {
+  const userData = useSelector((state) => state.user.userData);
+  console.log(userData);
 
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [subCategories, setSubCategories] = useState([]);
-  const [selectedColor, setSelectedColor] = useState('');
-
+  const [selectedColor, setSelectedColor] = useState("");
 
   const colours = [
     "amarillo",
@@ -23,7 +24,7 @@ const ProductManage = () => {
     "blanco",
     "crudo",
     "beige",
-    "marrón (ladrillo/madera)", 
+    "marrón (ladrillo/madera)",
     "plateado",
     "dorado",
     "negro",
@@ -31,7 +32,7 @@ const ProductManage = () => {
     "transparente",
     "multicolor",
   ];
-  
+
   const categories = [
     "aire_libre",
     "alfombras",
@@ -59,61 +60,160 @@ const ProductManage = () => {
     "tocador",
   ];
   const subcategories = {
-  aire_libre: ["picnic ,camping ,playa"],
-  alfombras: [],
-  bazar_cocina: ["bar", "botellas/jarras", "cubiertos/utensillos", "electro (tostadoras, licuadoras, jugueras, cafetera electrica, multipro)", "especieros", "frascos / latas", "fruteras / paneras", "fuentes / bandejas", "infusiones (te mate cafe, desayuno)", "ollas / sartenes", "tablas / apoyas", "termos", "vajilla", "vasos / copas", "varios bazar", "productos (packagins)"],
-  cesteria: [],
-  comercial: ["productos y packagins", "comercial varios"],
-  de_mano: ["agendas / libretas", "anteojos", "billeteras / monederos", "bijou", "bolsillo / cartera(polveras, espejitos, guantes, pañuelos, pastilleros, peines, algún maquillaje, abanicos)", "dinero / documentos", "llaves / llaveros / candados", "neceseurs", "paraguas", "tabaco (cigarillos, mecheros, cigarreras, etc)", "viaje (automovil, mapas, pasajes aeropuerto, etc)"],
-  deco: ["cajas / cofres", "ceniceros", "floreros / jarrones", "navidad / cotillon", "firguras / objetos", "platos / bandejas", "portaretratos", "souvenirs / colecciones", "velas / candelabros"],
-  deportes: [],
-  escolar: ["aula", "carpetas y cuadernos", "mochilas / portafolios", "utiles"],
-  oficina_escritorio: ["archivo", "mesa", "papeleria", "tecno (compus, maquina escribir, calculadoras)"],
-  hogar_jardin: ["miscelanea y mobiliario"],
-  infantil: ["decoracion", "juguetes", "juegos de mesa", "instrumentos", "muñecos / peluches / titeres", "sillas / rodados"],
-  lamparas: ["mesa", "techo", "pared"],
-  lectura_musica: ["libros / revistas", "discos / cintas"],
-  marroquineria: ["bolsos / mochilas", "carteras", "escolar / infantil", "equipaje", "portafolios"],
-  pared: ["cuadros", "diplomas", "espejos","laminas", "mascaras", "mapas / planos", "placas / carteleria", "platos", "tapices", "varios (calendarios, esterillas, grillas, especiero, etc"],
-  via_publica: ["patentes, escudos, señaletica"],
-  religioso: [],
-  relojes: ["mesa", "pared"],
-  salud: ["medicina", "farmacia"],
-  tecno_electro: ["electrodomesticos", "audio", "tecnologia"],
-  telefonos: [],
-  textil: ["acolachados/mantas", "almohadones", "carpetas/caminos", "cortinas", "manteles/individuales", "repasadores/manoplas", "sabanas", "toallas"],
-  tocador: ["aseo", "cosmetica", "frascos / perfumes", "hombre", "peluqueria", "varios tocador o baño"],
-};
+    aire_libre: ["picnic ,camping ,playa"],
+    alfombras: [],
+    bazar_cocina: [
+      "bar",
+      "botellas/jarras",
+      "cubiertos/utensillos",
+      "electro (tostadoras, licuadoras, jugueras, cafetera electrica, multipro)",
+      "especieros",
+      "frascos / latas",
+      "fruteras / paneras",
+      "fuentes / bandejas",
+      "infusiones (te mate cafe, desayuno)",
+      "ollas / sartenes",
+      "tablas / apoyas",
+      "termos",
+      "vajilla",
+      "vasos / copas",
+      "varios bazar",
+      "productos (packagins)",
+    ],
+    cesteria: [],
+    comercial: ["productos y packagins", "comercial varios"],
+    de_mano: [
+      "agendas / libretas",
+      "anteojos",
+      "billeteras / monederos",
+      "bijou",
+      "bolsillo / cartera(polveras, espejitos, guantes, pañuelos, pastilleros, peines, algún maquillaje, abanicos)",
+      "dinero / documentos",
+      "llaves / llaveros / candados",
+      "neceseurs",
+      "paraguas",
+      "tabaco (cigarillos, mecheros, cigarreras, etc)",
+      "viaje (automovil, mapas, pasajes aeropuerto, etc)",
+    ],
+    deco: [
+      "cajas / cofres",
+      "ceniceros",
+      "floreros / jarrones",
+      "navidad / cotillon",
+      "firguras / objetos",
+      "platos / bandejas",
+      "portaretratos",
+      "souvenirs / colecciones",
+      "velas / candelabros",
+    ],
+    deportes: [],
+    escolar: [
+      "aula",
+      "carpetas y cuadernos",
+      "mochilas / portafolios",
+      "utiles",
+    ],
+    oficina_escritorio: [
+      "archivo",
+      "mesa",
+      "papeleria",
+      "tecno (compus, maquina escribir, calculadoras)",
+    ],
+    hogar_jardin: ["miscelanea y mobiliario"],
+    infantil: [
+      "decoracion",
+      "juguetes",
+      "juegos de mesa",
+      "instrumentos",
+      "muñecos / peluches / titeres",
+      "sillas / rodados",
+    ],
+    lamparas: ["mesa", "techo", "pared"],
+    lectura_musica: ["libros / revistas", "discos / cintas"],
+    marroquineria: [
+      "bolsos / mochilas",
+      "carteras",
+      "escolar / infantil",
+      "equipaje",
+      "portafolios",
+    ],
+    pared: [
+      "cuadros",
+      "diplomas",
+      "espejos",
+      "laminas",
+      "mascaras",
+      "mapas / planos",
+      "placas / carteleria",
+      "platos",
+      "tapices",
+      "varios (calendarios, esterillas, grillas, especiero, etc",
+    ],
+    via_publica: ["patentes, escudos, señaletica"],
+    religioso: [],
+    relojes: ["mesa", "pared"],
+    salud: ["medicina", "farmacia"],
+    tecno_electro: ["electrodomesticos", "audio", "tecnologia"],
+    telefonos: [],
+    textil: [
+      "acolachados/mantas",
+      "almohadones",
+      "carpetas/caminos",
+      "cortinas",
+      "manteles/individuales",
+      "repasadores/manoplas",
+      "sabanas",
+      "toallas",
+    ],
+    tocador: [
+      "aseo",
+      "cosmetica",
+      "frascos / perfumes",
+      "hombre",
+      "peluqueria",
+      "varios tocador o baño",
+    ],
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    
-    try {
-      const response = await axios.post('http://localhost:4000/api/v1/product/add', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
 
-      console.log('Product added successfully:', response.data);
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/v1/product/add",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("Product added successfully:", response.data);
     } catch (error) {
-      console.error('Error adding product:', error.message);
+      console.error("Error adding product:", error.message);
     }
   };
 
-const handleCategoryChange = (event) => {
-  const selectedCategory = event.target.value;
-  const categorySubcategories = subcategories[selectedCategory] || [];
-    
+  const handleCategoryChange = (event) => {
+    const selectedCategory = event.target.value;
+    const categorySubcategories = subcategories[selectedCategory] || [];
+
     setSelectedCategory(selectedCategory);
-    setSubCategories(categorySubcategories.length > 0 ? categorySubcategories : ["Ninguna"]);
+    setSubCategories(
+      categorySubcategories.length > 0 ? categorySubcategories : ["Ninguna"]
+    );
   };
 
   return (
     <div className="flex items-center justify-center pt-[17vh]">
-      <form encType="multipart/form-data" onSubmit={handleSubmit} className="bg-white p-8 shadow-md rounded max-w-md w-full">
+      <form
+        encType="multipart/form-data"
+        onSubmit={handleSubmit}
+        className="bg-white p-8 shadow-md rounded max-w-md w-full"
+      >
         <div className="mb-3 flex items-center">
           <label htmlFor="image" className="w-1/3 pr-4 text-right">
             Imagen:
@@ -126,54 +226,52 @@ const handleCategoryChange = (event) => {
           />
         </div>
 
-
         <div className="mb-3 flex items-center">
-        <label htmlFor="category" className="w-1/3 pr-4 text-right">
-          Categoría:
-        </label>
-        <select
-          name="category"
-          value={selectedCategory}
-          onChange={handleCategoryChange}
-          className="w-2/3 p-2 border border-gray-300 rounded"
-        >
-          
-          
-          {!selectedCategory && (
-            <option value="" disabled>Selecciona una categoría</option>
-          )}
-          {categories.map((category) => (
-            <option key={category} value={category}>
-              {category}
-            </option>
-          ))}
-        </select>
-      </div>
-      
-      {selectedCategory && (
-        <div className="mb-3 flex items-center">
-          <label htmlFor="subCategory" className="w-1/3 pr-4 text-right">
-            Sub-categoría:
+          <label htmlFor="category" className="w-1/3 pr-4 text-right">
+            Categoría:
           </label>
           <select
-            name="subCategory"
+            name="category"
+            value={selectedCategory}
+            onChange={handleCategoryChange}
             className="w-2/3 p-2 border border-gray-300 rounded"
           >
-          
-            {!subCategories.includes("Ninguna") && (
-              <option value="" disabled selected>Selecciona una subcategoría</option>
+            {!selectedCategory && (
+              <option value="" disabled>
+                Selecciona una categoría
+              </option>
             )}
-            {subCategories.map((subCategory) => 
-            (
-              <option key={subCategory} value={subCategory}>
-                {subCategory}
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
               </option>
             ))}
           </select>
         </div>
-      )}
 
-      
+        {selectedCategory && (
+          <div className="mb-3 flex items-center">
+            <label htmlFor="subCategory" className="w-1/3 pr-4 text-right">
+              Sub-categoría:
+            </label>
+            <select
+              name="subCategory"
+              className="w-2/3 p-2 border border-gray-300 rounded"
+            >
+              {!subCategories.includes("Ninguna") && (
+                <option value="" disabled selected>
+                  Selecciona una subcategoría
+                </option>
+              )}
+              {subCategories.map((subCategory) => (
+                <option key={subCategory} value={subCategory}>
+                  {subCategory}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
         <div className="mb-3 flex items-center">
           <label htmlFor="name" className="w-1/3 pr-4 text-right">
             Nombre de artículo:
@@ -206,7 +304,6 @@ const handleCategoryChange = (event) => {
           />
         </div>
 
-       
         <div className="mb-3 flex items-center">
           <label htmlFor="color" className="w-1/3 pr-4 text-right">
             Color:
@@ -217,7 +314,9 @@ const handleCategoryChange = (event) => {
             onChange={(e) => setSelectedColor(e.target.value)}
             className="w-2/3 p-2 border border-gray-300 rounded"
           >
-            <option value="" disabled>Selecciona un color</option>
+            <option value="" disabled>
+              Selecciona un color
+            </option>
             {colours.map((color) => (
               <option key={color} value={color}>
                 {color}
@@ -225,8 +324,6 @@ const handleCategoryChange = (event) => {
             ))}
           </select>
         </div>
-
-
 
         <div className="mb-3 flex items-center">
           <label htmlFor="dimensions" className="w-1/3 pr-4 text-right">
@@ -251,7 +348,10 @@ const handleCategoryChange = (event) => {
         </div>
 
         <div className="mt-4 flex justify-center">
-          <button type="submit" className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900">
+          <button
+            type="submit"
+            className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900"
+          >
             AGREGAR
           </button>
         </div>
@@ -261,18 +361,3 @@ const handleCategoryChange = (event) => {
 };
 
 export default ProductManage;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -12,12 +12,19 @@ import HamburguerMenu from "./commons/HamburgerMenu";
 import Login from "./components/Login";
 import Cookies from "js-cookie";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector  } from "react-redux";
+
 import { setUserData } from "../redux/reducers";
 
 const App = () => {
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(false);
+
+  const isAdmin = useSelector((state) => state.user.userData?.payload.is_admin || false)
+  console.log("COMP APP IS AUTH",isAdmin);
+
+  
+
   const handleModal = () => {
     setModalOpen(!modalOpen);
   };
@@ -42,13 +49,20 @@ const App = () => {
 
   return (
     <>
-      <NavBar handleModal={handleModal} modal={modalOpen} />
+      <NavBar handleModal={handleModal} modal={modalOpen}   />
       {modalOpen && (
         <HamburguerMenu handleModal={handleModal} modal={modalOpen} />
       )}
       <Routes>
         <Route path="/" element={<Home modal={modalOpen} />} />
-        <Route path="/agregar" element={<ProductManage />} />
+
+        
+        {isAdmin && (
+          <Route path="/agregar" element={<ProductManage />} />
+        )}
+
+
+        {/* <Route path="/agregar" element={<ProductManage />} />  */}
         <Route path="/rubros" element={<Rubros />} />
         <Route path="/info" element={<Info />} />
         <Route path="/contacto" element={<Contacto />} />

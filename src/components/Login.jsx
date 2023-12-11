@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../../redux/reducers";
 import { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -6,9 +8,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import Cookies from "js-cookie";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+
   const initialValues = {
     email: "",
     password: "",
@@ -21,12 +26,14 @@ const Login = () => {
     password: Yup.string().required("La contraseña es requerida"),
   });
 
-  const onSubmit = (values) => {
+  const onSubmit = (values, { resetForm }) => {
     axios
       .post("http://localhost:4000/api/v1/user/login", values)
       .then((res) => {
-        console.log(res);
+        dispatch(setUserData(res.data));
+        Cookies.set("token", res.data.token);
         toast.success(`Bienvenido ${res.data.email}`);
+        resetForm();
       })
       .catch((err) => {
         toast.error(err.response.data.error);

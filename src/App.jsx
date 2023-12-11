@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import ProductManage from "./components/ProductManage";
 import Rubros from "./components/Rubros";
@@ -10,12 +10,35 @@ import Contacto from "./components/Contacto";
 import Footer from "./components/footer";
 import HamburguerMenu from "./commons/HamburgerMenu";
 import Login from "./components/Login";
+import Cookies from "js-cookie";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../redux/reducers";
 
 const App = () => {
+  const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(false);
   const handleModal = () => {
     setModalOpen(!modalOpen);
   };
+  const token = Cookies.get("token");
+  if (token) {
+    useEffect(() => {
+      axios
+        .get("http://localhost:4000/api/v1/user/user", {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          dispatch(setUserData(res.data));
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }, []);
+  }
 
   return (
     <>

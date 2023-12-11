@@ -30,7 +30,7 @@ const NavBar = ({ handleModal,modal }) => {
 
       {screenWidth>=1024 ? 
        
-      (<div class="flex h-[100%] w-[100%] justify-start">
+      (<div className="flex h-[100%] w-[100%] justify-start">
       
       <div className="h-full flex items-center ml-[3.5vw] ">
         <img
@@ -73,7 +73,7 @@ const NavBar = ({ handleModal,modal }) => {
          
         </ul>
       </div>
-      </div>):(!modal && <div class="flex h-[70%] w-[85%] justify-between items-center">   
+      </div>):(!modal && <div className="flex h-[70%] w-[85%] justify-between items-center">   
         <div className="h-full flex items-center ml-2% ">
         <img
           src={poliRubroLogo}

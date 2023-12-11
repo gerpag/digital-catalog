@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 const ProductManage = () => {
   const userData = useSelector((state) => state.user.userData);
-  console.log(userData);
 
   const [selectedCategory, setSelectedCategory] = useState("");
   const [subCategories, setSubCategories] = useState([]);

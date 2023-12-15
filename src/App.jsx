@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import Info from "./components/Info";
 import Contacto from "./components/Contacto";
 import Footer from "./components/footer";
+import Forbidden from "./components/Forbbiden"
 import HamburguerMenu from "./commons/HamburgerMenu";
 import Login from "./components/Login";
 import Cookies from "js-cookie";
@@ -57,12 +58,12 @@ const App = () => {
         <Route path="/" element={<Home modal={modalOpen} />} />
 
         
-        {isAdmin && (
+        {isAdmin ? (
           <Route path="/agregar" element={<ProductManage />} />
-        )}
+        ):  <Route path="/agregar" element={<Forbidden  />} />}
 
 
-        {/* <Route path="/agregar" element={<ProductManage />} />  */}
+
         <Route path="/rubros" element={<Rubros />} />
         <Route path="/info" element={<Info />} />
         <Route path="/contacto" element={<Contacto />} />

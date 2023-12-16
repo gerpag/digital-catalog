@@ -112,7 +112,7 @@ const ProductManage = () => {
       url_img:"" 
     },
     validationSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values,  { resetForm }) => {
       try {
         const formdata = new FormData();
         
@@ -122,9 +122,12 @@ const ProductManage = () => {
         });
 
         const response = await axios.post('http://localhost:4000/api/v1/product/add', formdata);
-
-      
+     
       toast.success('Artículo agregado exitosamente');
+
+      resetForm();
+      document.getElementById('image').value = null;
+
       } catch (error) {
         const errDup = error.response.data.error.split(" ")[0];
         console.error('Error adding product:', error.message);
@@ -160,6 +163,7 @@ const ProductManage = () => {
             Imagen:
           </label>
           <input
+            id=  'image'
             type="file"
             accept="image/*"
             name="image"

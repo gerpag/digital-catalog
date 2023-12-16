@@ -9,7 +9,7 @@ const NavBar = ({ handleModal,modal }) => {
   const location = useLocation();
   const isAdmin = useSelector((state) => state.user.userData?.payload.is_admin || false)
 
-  console.log(isAdmin);
+  
 
 
   const links = ["INICIO", "RUBROS", "INFO", "CONTACTO", "LOGIN"];

@@ -115,7 +115,7 @@ const ProductManage = () => {
     onSubmit: async (values) => {
       try {
         const formdata = new FormData();
-        console.log("FORM DATA ", formdata);
+        
         
         Object.keys(values).forEach((key) => {
           formdata.append(key, values[key]);

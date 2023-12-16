@@ -22,7 +22,7 @@ const App = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const isAdmin = useSelector((state) => state.user.userData?.payload.is_admin || false)
-  console.log("COMP APP IS AUTH",isAdmin);
+
 
   
 
@@ -39,7 +39,7 @@ const App = () => {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          
           dispatch(setUserData(res.data));
         })
         .catch((err) => {

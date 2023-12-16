@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductManage = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [subCategories, setSubCategories] = useState([]);
-  const [selectedColor, setSelectedColor] = useState('');
+  
 
     const colours = [
     "amarillo",
@@ -91,7 +93,7 @@ const ProductManage = () => {
     name: Yup.string().required('El nombre es requerido'),
     material: Yup.string().required('El material es requerido'),
     description: Yup.string().required('La descripción es requerida'),
-    color: Yup.string().required('El color es requerido'),
+    colour: Yup.string().required('El color es requerido'),
     dimensions: Yup.string().required('Las dimensiones son requeridas'),
     quantity: Yup.number().required('La cantidad es requerida').positive('La cantidad debe ser un número positivo'),
   });
@@ -104,22 +106,40 @@ const ProductManage = () => {
       name: '',
       material: '',
       description: '',
-      color: '',
+      colour: '',
       dimensions: '',
       quantity: 0,
+      url_img:"" 
     },
     validationSchema,
     onSubmit: async (values) => {
       try {
-        const response = await axios.post('http://localhost:4000/api/v1/product/add', values, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
+        const formdata = new FormData();
+        console.log("FORM DATA ", formdata);
+        
+        Object.keys(values).forEach((key) => {
+          formdata.append(key, values[key]);
         });
 
-        console.log('Product added successfully:', response.data);
+        const response = await axios.post('http://localhost:4000/api/v1/product/add', formdata);
+
+      
+      toast.success('Artículo agregado exitosamente');
       } catch (error) {
+        const errDup = error.response.data.error.split(" ")[0];
         console.error('Error adding product:', error.message);
+       
+        if (errDup === "E11000") {
+          toast.error("EL nombre del artículo ya existe, debe ser diferente")
+          
+         
+        } else if (error.response && error.response.data) {
+          console.error('Error adding product:', error.response.data.error);
+          toast.error('Error al agregar el producto');
+        } else {
+          console.error('Error adding product:', error.message);
+          toast.error("Error al agregar el producto");
+        }
       }
     },
   });
@@ -254,13 +274,13 @@ const ProductManage = () => {
         </div>
 
         <div className="mb-3 flex items-center">
-          <label htmlFor="color" className="w-1/3 pr-4 text-right">
+          <label htmlFor="colour" className="w-1/3 pr-4 text-right">
             Color:
           </label>
           <select
-            name="color"
-            value={selectedColor}
-            onChange={(e) => { setSelectedColor(e.target.value); formik.handleChange(e); }}
+            name="colour"
+            value={formik.values.colour}
+            onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             className="w-2/3 p-2 border border-gray-300 rounded"
           >
@@ -271,8 +291,8 @@ const ProductManage = () => {
               </option>
             ))}
           </select>
-          {formik.touched.color && formik.errors.color ? (
-            <div className="text-red-500">{formik.errors.color}</div>
+          {formik.touched.colour && formik.errors.colour ? (
+            <div className="text-red-500">{formik.errors.colour}</div>
           ) : null}
         </div>
 
@@ -316,6 +336,7 @@ const ProductManage = () => {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

@@ -28,7 +28,7 @@ import { Mail, Instagram, MapPin, Phone } from 'react-feather';
 
 const Contacto = () => {
   return (
-    <div className="polirubro-container flex items-center justify-center bg-gray-100 pt-[17vh]">
+    <div className="polirubro-container flex items-center justify-center bg-gray-100 pt-[17vh] h-[83vh]">
       <div className="text-left p-4 max-w-3xl mx-auto">
       
 

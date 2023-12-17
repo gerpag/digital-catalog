@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import poliRubroLogo from "/polirubro_logo.png";
+import { useSelector } from "react-redux";
 
 function HamburguerMenu({ handleModal, modal }) {
   const location = useLocation();
-  const links = ["INICIO", "RUBROS", "INFO", "CONTACTO", "AGREGAR", "LOGIN"];
+  const isAdmin = useSelector(
+    (state) => state.user.userData?.payload.is_admin || false
+  );
+  const links = ["INICIO", "RUBROS", "INFO", "CONTACTO", "LOGIN"];
 
-  const [activo,setActivo]=useState(false);
+  const [activo, setActivo] = useState(false);
 
   const handleActivo = () => {
     return activo
@@ -15,17 +19,16 @@ function HamburguerMenu({ handleModal, modal }) {
       : setActivo(!activo);
   };
 
-  useEffect(()=>{
-    handleActivo()
-  },[modal])
-  
+  useEffect(() => {
+    handleActivo();
+  }, [modal]);
 
   return (
     <div
-    className={`${
-      activo ? "translate-x-0" :"translate-x-full"
-    } fixed w-[60vw] h-[100vh] top[17vh]  z-50 bg-[#f2f2f2] border-[2px] border-[grey] right-0 ease-in-out transform transition-transform duration-1000`}
-  >
+      className={`${
+        activo ? "translate-x-0" : "translate-x-full"
+      } fixed w-[60vw] h-[100vh] top[17vh]  z-50 bg-[#f2f2f2] border-[2px] border-[grey] right-0 ease-in-out transform transition-transform duration-1000`}
+    >
       <div onClick={handleActivo} className="w-full flex justify-start mt-[2%]">
         <FaTimes style={{ marginLeft: "5%", fontSize: "1.5rem" }} />
       </div>
@@ -41,7 +44,9 @@ function HamburguerMenu({ handleModal, modal }) {
               <Link
                 to={item === "INICIO" ? "/" : `/${item.toLocaleLowerCase()}`}
                 className={`hover:font-bold ${
-                  location.pathname === `/${item.toLocaleLowerCase()}` ? "font-bold" : ""
+                  location.pathname === `/${item.toLocaleLowerCase()}`
+                    ? "font-bold"
+                    : ""
                 }`}
               >
                 {item}
@@ -49,6 +54,20 @@ function HamburguerMenu({ handleModal, modal }) {
             </li>
           </div>
         ))}
+        {isAdmin && (
+          <div className="w-[80%]">
+            <li className="text-[1.1rem] text-center ">
+              <Link
+                to={`/agregar`}
+                className={`hover:font-bold ${
+                  location.pathname === `/agregar` ? "font-bold" : ""
+                }`}
+              >
+                AGREGAR
+              </Link>
+            </li>
+          </div>
+        )}
       </ul>
     </div>
   );

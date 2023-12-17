@@ -3,6 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import CardsRubros from "./CardsRubros";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import ProductModal from "../commons/ProductModal";
+import { useDispatch } from "react-redux";
+import { setModalState } from "../../redux/modalSlice";
+import { arrayProductosConDataImagen } from "../assets/auxiliarFunctions";
 
 const Rubros = () => {
   const location = useLocation();
@@ -28,7 +32,19 @@ const Rubros = () => {
         }
 
         const response = await axios.get(url);
-        setProducts(response.data);
+        const urlsImages = response.data.map((url) => {
+          return url.url_img;
+        });
+        let infoImagenesServer = await axios.get(
+          `http://localhost:4000/api/v1/images/?imagenes=${urlsImages}`
+        );
+        let imagenes = infoImagenesServer.data.images;
+
+        const productosConImagenes = arrayProductosConDataImagen(
+          response.data,
+          imagenes
+        );
+        setProducts(productosConImagenes);
       } catch (error) {
         console.error("No se pudo cargar los productos:", error);
       }
@@ -162,95 +178,114 @@ const Rubros = () => {
     "tocador",
   ];
 
+  const [modalOpen, setModalOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleModal = () => {
+    dispatch(setModalState(!modalOpen));
+    setModalOpen(!modalOpen);
+  };
+
   return (
-    <div>
-      <div className="general flex ml-12 pt-[17vh]">
-        <div className="izquierda w-36 mr-32">
-          <div>
-            <h3 className="text-xl font-bold mb-3">Colores</h3>
+    <>
+      <ProductModal modalOpen={modalOpen} handleModal={handleModal} />
+      <div
+        className={`${
+          modalOpen && "opacity-50 brightness-50 pointer-events-none bg-black "
+        }`}
+      >
+        <div className={`general flex ml-12 pt-[17vh] `}>
+          <div className="izquierda w-36 mr-32">
             <div>
+              <h3 className="text-xl font-bold mb-3">Colores</h3>
               <div>
-                {colorsOne.map((item, index) => (
-                  <button
-                    key={index}
-                    className=" w-5 h-5 m-1 rounded-full"
-                    style={{ backgroundColor: item.color }}
-                    onClick={() => handleColor(item.titulo)}
-                  />
-                ))}
-              </div>
-              <div>
-                {colorsTwo.map((item, index) => (
-                  <button
-                    key={index}
-                    className={"w-5 h-5 m-1 rounded-full"}
-                    style={{ backgroundColor: item.color }}
-                    onClick={() => handleColor(item.titulo)}
-                  />
-                ))}
+                <div>
+                  {colorsOne.map((item, index) => (
+                    <button
+                      key={index}
+                      className=" w-5 h-5 m-1 rounded-full"
+                      style={{ backgroundColor: item.color }}
+                      onClick={() => handleColor(item.titulo)}
+                    />
+                  ))}
+                </div>
+                <div>
+                  {colorsTwo.map((item, index) => (
+                    <button
+                      key={index}
+                      className={"w-5 h-5 m-1 rounded-full"}
+                      style={{ backgroundColor: item.color }}
+                      onClick={() => handleColor(item.titulo)}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
+            <div className="categorias ">
+              <h3 className="text-xl font-bold mb-3 mt-3">Categorías</h3>
+              <ul>
+                {categories.map((item, index) => (
+                  <Link
+                    key={index}
+                    to="/rubros"
+                    className="hover:font-bold "
+                    onClick={() => handleCategory(item)}
+                  >
+                    <li className=" text-base mt-1">{item.toUpperCase()}</li>
+                  </Link>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="categorias ">
-            <h3 className="text-xl font-bold mb-3 mt-3">Categorías</h3>
-            <ul>
-              {categories.map((item, index) => (
-                <Link
-                  key={index}
-                  to="/rubros"
-                  className="hover:font-bold "
-                  onClick={() => handleCategory(item)}
-                >
-                  <li className=" text-base mt-1">{item.toUpperCase()}</li>
-                </Link>
-              ))}
-            </ul>
-          </div>
-        </div>
-        <div className="derecha ">
-          <div className="flex">
-            <input
-              type="text"
-              className=" border-b-2 border-black mb-3 bg-transparent outline-none"
-              placeholder="Buscar"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+          <div className="derecha ">
             <div className="flex">
-              {categoryParam && (
-                <button
-                  onClick={handleResetFilterCategory}
-                  className="border-[1px] bg-gray-200 rounded-xl w-auto px-2 mx-2 hover:bg-gray-300 "
-                >
-                  {categoryParam.toUpperCase()}
-                  <span
-                    className=" ml-3 text-black font-bold  "
+              <input
+                type="text"
+                className=" border-b-2 border-black mb-3 bg-transparent outline-none"
+                placeholder="Buscar"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <div className="flex">
+                {categoryParam && (
+                  <button
                     onClick={handleResetFilterCategory}
+                    className="border-[1px] bg-gray-200 rounded-xl w-auto px-2 mx-2 hover:bg-gray-300 "
                   >
-                    x
-                  </span>
-                </button>
-              )}
-              {colorParam && (
-                <button
-                  onClick={handleResetFilterColor}
-                  className="border-[1px] bg-gray-200 rounded-xl w-auto mx-2 px-2 hover:bg-gray-300 relative"
-                >
-                  {colorParam.toUpperCase()}
-                  <span
-                    className=" ml-3 text-black font-bold "
+                    {categoryParam.toUpperCase()}
+                    <span
+                      className=" ml-3 text-black font-bold  "
+                      onClick={handleResetFilterCategory}
+                    >
+                      x
+                    </span>
+                  </button>
+                )}
+                {colorParam && (
+                  <button
                     onClick={handleResetFilterColor}
+                    className="border-[1px] bg-gray-200 rounded-xl w-auto mx-2 px-2 hover:bg-gray-300 relative"
                   >
-                    x
-                  </span>
-                </button>
-              )}
+                    {colorParam.toUpperCase()}
+                    <span
+                      className=" ml-3 text-black font-bold "
+                      onClick={handleResetFilterColor}
+                    >
+                      x
+                    </span>
+                  </button>
+                )}
+              </div>
             </div>
+            <CardsRubros
+              products={filteredProducts}
+              modalOpen={modalOpen}
+              handleModal={handleModal}
+            />
           </div>
-          <CardsRubros products={filteredProducts} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

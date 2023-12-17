@@ -23,10 +23,11 @@ const NavBar = ({ handleModal,modal }) => {
 
   window.addEventListener("resize",handleScreenWidth)
 
+  const modalOpen=useSelector((state)=>state.modal)
 
   return (
     <>
-    <div className= {`${modal && "opacity-50 brightness-50 pointer-events-none"}  flex w-[100vw] h-[16vh]  fixed z-40 justify-center bg-[#f2f2f2] items-center`} >
+    <div className= {`${(modal || modalOpen) && "opacity-50 brightness-50 pointer-events-none"}  flex w-[100vw] h-[16vh]  fixed z-40 justify-center bg-[#f2f2f2] items-center`} >
 
       {screenWidth>=1024 ? 
        

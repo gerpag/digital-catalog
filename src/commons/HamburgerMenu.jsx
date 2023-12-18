@@ -3,13 +3,20 @@ import { Link, useLocation } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import poliRubroLogo from "/polirubro_logo.png";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../../redux/userSlice";
+import { useNavigate } from "react-router-dom";
 
 function HamburguerMenu({ handleModal, modal }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
   const isAdmin = useSelector(
     (state) => state.user.userData?.payload.is_admin || false
   );
-  const links = ["INICIO", "RUBROS", "INFO", "CONTACTO", "LOGIN"];
+  const userLogged = useSelector((state) => state.user.userData?.payload.email);
+  const links = ["INICIO", "RUBROS", "INFO", "CONTACTO"];
 
   const [activo, setActivo] = useState(false);
 
@@ -22,6 +29,20 @@ function HamburguerMenu({ handleModal, modal }) {
   useEffect(() => {
     handleActivo();
   }, [modal]);
+
+  const handleLogOut = () => {
+    axios
+      .get("http://localhost:4000/api/v1/user/logout", {
+        withCredentials: true,
+      })
+      .then(() => {
+        dispatch(setUserData(null))
+        navigate("/");
+      })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
 
   return (
     <div
@@ -67,6 +88,25 @@ function HamburguerMenu({ handleModal, modal }) {
               </Link>
             </li>
           </div>
+        )}
+        {userLogged ? (
+          <li
+            onClick={handleLogOut}
+            className="text-[1.1rem] text-center hover:font-bold "
+          >
+            LOGOUT
+          </li>
+        ) : (
+          <li className="text-[1.1rem] text-center ">
+            <Link
+              to={`/login`}
+              className={`hover:font-bold ${
+                location.pathname === `/login` ? "font-bold" : ""
+              }`}
+            >
+              LOGIN
+            </Link>
+          </li>
         )}
       </ul>
     </div>

@@ -11,7 +11,7 @@ function Home({modal}){
         <div className={` w-[85vw] grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 xs:w-3/4 gap-3 mx-[auto] pt-[17vh] `}>
     {rubros.map((categoria,i)=>{
        return (
-    <CardCategory categoria={categoria}/>
+    <CardCategory key={i} categoria={categoria}/>
        )
     })}
     </div>

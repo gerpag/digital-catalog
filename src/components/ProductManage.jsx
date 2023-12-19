@@ -89,7 +89,8 @@ const ProductManage = () => {
   const validationSchema = Yup.object({
     image: Yup.mixed().required('La imagen es requerida'),
     category: Yup.string().required('La categoría es requerida'),
-    subCategory: Yup.string(),
+    subCategory: Yup.string().required('La subcategoría es requerida'),
+    
     name: Yup.string().required('El nombre es requerido'),
     material: Yup.string().required('El material es requerido'),
     description: Yup.string().required('La descripción es requerida'),
@@ -115,7 +116,7 @@ const ProductManage = () => {
     onSubmit: async (values,  { resetForm }) => {
       try {
         const formdata = new FormData();
-        
+        console.log("DATA ENVIADA ", formdata);
         
         Object.keys(values).forEach((key) => {
           formdata.append(key, values[key]);
@@ -152,8 +153,15 @@ const ProductManage = () => {
     const categorySubcategories = subcategories[selectedCategory] || [];
     
     setSelectedCategory(selectedCategory);
+
+    formik.setFieldValue('category', selectedCategory);
+    formik.setFieldValue('subCategory', ''); 
+
     setSubCategories(categorySubcategories.length > 0 ? categorySubcategories : ["Ninguna"]);
+
+
   };
+
 
   return (
     <div className="flex items-center justify-center pt-[17vh]">

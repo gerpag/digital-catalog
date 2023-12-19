@@ -13,3 +13,27 @@ body {
   font-family: "Poppins", sans-serif;
   
 }
+
+.leftArrowCarrusel{
+  margin-right: 1%;
+  font-size: 3.5rem;
+  position: fixed;
+  top: 50%;
+  left: 20%;
+}
+
+.leftArrowCarrusel :hover{
+  scale: 1.1;
+}
+
+.rightArrowCarrusel{
+  margin-left: 1%;
+  font-size: 3.5rem;
+  position: fixed;
+  top: 50%;
+  right: 20%;
+
+}
+.rightArrowCarrusel :hover{
+  scale: 1.1;
+}

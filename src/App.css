@@ -17,7 +17,7 @@ body {
 .leftArrowCarrusel{
   margin-right: 1%;
   font-size: 3.5rem;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 20%;
 }
@@ -29,7 +29,7 @@ body {
 .rightArrowCarrusel{
   margin-left: 1%;
   font-size: 3.5rem;
-  position: absolute;
+  position: fixed;
   top: 50%;
   right: 20%;
 

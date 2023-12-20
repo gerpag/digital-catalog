@@ -15,7 +15,6 @@ const NavBar = ({ handleModal, modal }) => {
   const isAdmin = useSelector(
     (state) => state.user.userData?.payload.is_admin || false
   );
-  const userLogged = useSelector((state) => state.user.userData?.payload.email);
 
   const links = ["INICIO", "RUBROS", "INFO", "CONTACTO"];
 

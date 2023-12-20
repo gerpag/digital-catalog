@@ -12,3 +12,12 @@ export function arrayProductosConDataImagen(productos, imagenes) {
   
     return arrayResultado;
   }
+
+
+  export function ordenProductosCarrusel(productos,productId){
+
+    const filter1=productos.filter((product)=>{return product._id !==productId})
+    const filter2=productos.find((product)=>{return product._id ===productId})
+    filter1.unshift(filter2)
+    
+    return filter1}

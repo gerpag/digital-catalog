@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { setModalState } from "../../redux/modalSlice";
 import { arrayProductosConDataImagen } from "../assets/auxiliarFunctions";
 
+
 const Rubros = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -55,7 +56,7 @@ const Rubros = () => {
         
 
         const response = await axios.get(url);
-        console.log("FETCH:", response.data);
+        
         const urlsImages = response.data.map((url) => {
           return url.url_img;
         });
@@ -247,7 +248,7 @@ const categoriesWithSubcategories = [
           <div className="izquierda w-36 mr-32">
             <div>
               <h3 className="text-xl font-bold mb-3">Colores</h3>
-              <div>
+              <div className="w-[20vh]">
                 <div>
                   {colorsOne.map((item, index) => (
                     <button
@@ -270,7 +271,7 @@ const categoriesWithSubcategories = [
                 </div>
               </div>
             </div>
-            <div className="categories-subcategories overflow-y-auto max-h-[60vh]">
+            <div className="categories-subcategories overflow-y-auto max-h-[60vh] w-[30vh]">
               <h3 className="text-xl font-bold mb-3 mt-3">Categorías</h3>
               <ul>
              {categoriesWithSubcategories.map((categoryObj, index) => (

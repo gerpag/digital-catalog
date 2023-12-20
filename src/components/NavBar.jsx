@@ -38,7 +38,7 @@ const NavBar = ({ handleModal, modal }) => {
         navigate("/");
       });
     dispatch(setUserData(null)).catch((error) => {
-      console.log(error);
+      console.error(error);
     });
   };
 

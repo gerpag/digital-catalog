@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import poliRubroLogo from "/polirubro_logo.png";
 import { Link, useLocation } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
@@ -35,12 +35,16 @@ const NavBar = ({ handleModal, modal }) => {
         withCredentials: true,
       })
       .then(() => {
+        dispatch(setUserData(null));
+        document.cookie = "adminSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
         navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
       });
-    dispatch(setUserData(null)).catch((error) => {
-      console.error(error);
-    });
   };
+ 
 
   return (
     <>
@@ -90,7 +94,7 @@ const NavBar = ({ handleModal, modal }) => {
                   </li>
                 )}
 
-                {userLogged ? (
+                {isAdmin ? (
                   <li
                     onClick={handleLogOut}
                     className="justify-center text-2xl hover:font-bold"

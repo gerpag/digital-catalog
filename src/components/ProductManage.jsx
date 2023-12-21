@@ -89,7 +89,7 @@ const ProductManage = () => {
   const validationSchema = Yup.object({
     image: Yup.mixed().required('La imagen es requerida'),
     category: Yup.string().required('La categoría es requerida'),
-    subCategory: Yup.string().required('La subcategoría es requerida'),
+    subCategory: Yup.string(),
     
     name: Yup.string().required('El nombre es requerido'),
     material: Yup.string().required('El material es requerido'),

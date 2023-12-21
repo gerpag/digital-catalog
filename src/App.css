@@ -37,3 +37,15 @@ body {
 .rightArrowCarrusel :hover{
   scale: 1.1;
 }
+.tachitoBasura{
+  position: absolute;
+  right: 6%;
+  font-size: 1.4rem;
+  color: grey;
+  margin-top: 2%;
+}
+
+.tachitoBasura :hover{
+  color:red
+}
+

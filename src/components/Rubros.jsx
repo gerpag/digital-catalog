@@ -10,6 +10,7 @@ import { arrayProductosConDataImagen } from "../assets/auxiliarFunctions";
 
 const Rubros = () => {
   const location = useLocation();
+  const search=useLocation().search
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const colorParam = queryParams.get("color");
@@ -73,7 +74,7 @@ const Rubros = () => {
     };
 
     productsFetch();
-  }, [colorParam, categoryParam, subcategoryParam]);
+  }, [colorParam, categoryParam, subcategoryParam,search]);
 
   useEffect(() => {
     const updatedFilteredProducts = products.filter((product) => {
@@ -238,6 +239,10 @@ const categoriesWithSubcategories = [
     dispatch(setModalState(!modalOpen));
     setModalOpen(!modalOpen);
   };
+
+
+  console.log("search=========>",search)
+  console.log("location=========>",location)
 
   return (
     <>

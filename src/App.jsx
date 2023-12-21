@@ -13,6 +13,7 @@ import HamburguerMenu from "./commons/HamburgerMenu";
 import Login from "./components/Login";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setUserData } from "../redux/reducers";
@@ -47,6 +48,7 @@ const App = () => {
 
   return (
     <>
+    <ToastContainer />
       <NavBar handleModal={handleModal} modal={modalOpen} />
       {modalOpen && (
         <HamburguerMenu handleModal={handleModal} modal={modalOpen} />

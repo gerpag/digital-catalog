@@ -8,7 +8,7 @@ export const rubros = [
   { categoria: "deco", url_img: "../../public/deco.jpg" },
   { categoria: "deportes", url_img: "../../public/deportes.jpg" },
   { categoria: "escolar", url_img: "../../public/escolar.jpg" },
-  { categoria: "oficina", url_img: "../../public/alfombras.jpg" },
+  { categoria: "oficina", url_img: "../../public/escritorio_oficina.jpg" },
   { categoria: "hogar y jardin", url_img: "../../public/hogar_jardin.jpg" },
   { categoria: "infantil", url_img: "../../public/infantil.jpg" },
   { categoria: "lamparas", url_img: "../../public/lamparas.jpg" },

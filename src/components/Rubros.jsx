@@ -12,6 +12,7 @@ import GrillaCategories from "./GrillaCategories"
 
 const Rubros = () => {
   const location = useLocation();
+  const search=useLocation().search
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const colorParam = queryParams.get("color");
@@ -75,7 +76,7 @@ const Rubros = () => {
     };
 
     productsFetch();
-  }, [colorParam, categoryParam, subcategoryParam]);
+  }, [colorParam, categoryParam, subcategoryParam,search]);
 
   useEffect(() => {
     const updatedFilteredProducts = products.filter((product) => {
@@ -241,6 +242,7 @@ const categoriesWithSubcategories = [
     setModalOpen(!modalOpen);
   };
 
+
   const renderHomeGrid = () => {
     return (
       <Home
@@ -250,6 +252,7 @@ const categoriesWithSubcategories = [
     );
   };
   const isHomePage = location.pathname === "/rubros" && queryParams.toString() === "";
+
   return (
     <>
       <ProductModal modalOpen={modalOpen} handleModal={handleModal} />

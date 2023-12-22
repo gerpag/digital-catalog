@@ -7,6 +7,7 @@ import ProductModal from "../commons/ProductModal";
 import { useDispatch } from "react-redux";
 import { setModalState } from "../../redux/modalSlice";
 import { arrayProductosConDataImagen } from "../assets/auxiliarFunctions";
+import GrillaCategories from "./GrillaCategories"
 
 
 const Rubros = () => {
@@ -215,7 +216,7 @@ const categoriesWithSubcategories = [
   { category: "deco", subcategories: ["cajas / cofres", "ceniceros", "floreros / jarrones", "navidad / cotillón", "figuras / objetos", "platos / bandejas", "portaretratos", "souvenirs / colecciones", "velas / candelabros"] },
   { category: "deportes", subcategories: [] },
   { category: "escolar", subcategories: ["aula", "carpetas y cuadernos", "mochilas / portafolios", "útiles"] },
-  { category: "oficina_escritorio", subcategories: ["archivo", "mesa", "papelería", "tecno (compus, máquina escribir, calculadoras)"] },
+  { category: "oficina_escritorio", subcategories: ["archivo", "mesa", "papeleria", "tecno (compus, maquina escribir, calculadoras)"] },
   { category: "hogar_jardin", subcategories: ["miscelánea y mobiliario"] },
   { category: "infantil", subcategories: ["decoración", "juguetes", "juegos de mesa", "instrumentos", "muñecos / peluches / títeres", "sillas / rodados"] },
   { category: "lamparas", subcategories: ["mesa", "techo", "pared"] },
@@ -242,8 +243,15 @@ const categoriesWithSubcategories = [
   };
 
 
-  console.log("search=========>",search)
-  console.log("location=========>",location)
+  const renderHomeGrid = () => {
+    return (
+      <Home
+        modal={modalOpen}
+        
+      />
+    );
+  };
+  const isHomePage = location.pathname === "/rubros" && queryParams.toString() === "";
 
   return (
     <>
@@ -346,11 +354,14 @@ const categoriesWithSubcategories = [
                 )}
               </div>
             </div>
-            <CardsRubros products={filteredProducts} modalOpen={modalOpen} handleModal={handleModal} />
-          </div>
-        </div>
-      </div>
-    </>
+            {isHomePage? (
+              <GrillaCategories/>): (
+              <CardsRubros products={filteredProducts} modalOpen={modalOpen} handleModal={handleModal} />
+              )}
+              </div>
+              </div>
+              </div>
+              </>
   );
 };
 

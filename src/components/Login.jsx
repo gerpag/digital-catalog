@@ -30,7 +30,7 @@ const Login = () => {
 
   const onSubmit = (values, { resetForm }) => {
     axios
-      .post("http://localhost:4000/api/v1/user/login", values)
+      .post("/api/v1/user/login", values)
       .then((res) => {
         dispatch(setUserData({payload:res.data}));
         Cookies.set("token", res.data.token);

@@ -33,7 +33,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/v1/user/user", {
+      .get("/api/v1/user/user", {
         headers: {
           Authorization: token,
         },

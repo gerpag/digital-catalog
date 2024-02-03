@@ -46,7 +46,7 @@ const Rubros = () => {
   useEffect(() => {
     const productsFetch = async () => {
       try {
-        let url = "http://localhost:4000/api/v1/product/search";
+        let url = "/api/v1/product/search";
         let apiUrl = `${url}?=`;
 
         if (colorParam) {
@@ -68,7 +68,7 @@ const Rubros = () => {
         });
 
         let infoImagenesServer = await axios.get(
-          `http://localhost:4000/api/v1/images/?imagenes=${urlsImages}`
+          `/api/v1/images/?imagenes=${urlsImages}`
         );
 
         let imagenes = infoImagenesServer.data.images;
@@ -102,7 +102,7 @@ const Rubros = () => {
   const handleColor = async (color) => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/v1/product/search?colour=${color}`
+        `/api/v1/product/search?colour=${color}`
       );
       setProducts(response.data);
 
@@ -117,7 +117,7 @@ const Rubros = () => {
 
   const handleCategory = async (category, subcategory) => {
     try {
-      let url = `http://localhost:4000/api/v1/product/search?category=${category}`;
+      let url = `/api/v1/product/search?category=${category}`;
 
       const response = await axios.get(url);
 
@@ -126,7 +126,7 @@ const Rubros = () => {
       });
 
       let infoImagenesServer = await axios.get(
-        `http://localhost:4000/api/v1/images/?imagenes=${urlsImages}`
+        `/api/v1/images/?imagenes=${urlsImages}`
       );
 
       let imagenes = infoImagenesServer.data.images;

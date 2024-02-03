@@ -122,7 +122,7 @@ const ProductManage = () => {
           formdata.append(key, values[key]);
         });
 
-        const response = await axios.post('http://localhost:4000/api/v1/product/add', formdata);
+        const response = await axios.post('/api/v1/product/add', formdata);
      
       toast.success('Artículo agregado exitosamente');
 

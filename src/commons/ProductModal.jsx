@@ -47,12 +47,12 @@ function ProductModal({ modalOpen, handleModal }) {
       try {
         if (id) {
           const productView = await axios.get(
-            `http://localhost:4000/api/v1/product/search?_id=${id}`
+            `/api/v1/product/search?_id=${id}`
           );
           let dataProducto = productView.data[0];
 
           const imageProductView = await axios.get(
-            `http://localhost:4000/api/v1/images/${dataProducto.url_img}`
+            `/api/v1/images/${dataProducto.url_img}`
           );
           dataProducto = {
             ...dataProducto,
@@ -62,14 +62,14 @@ function ProductModal({ modalOpen, handleModal }) {
           setProductInfo(dataProducto);
 
           const productosCarrusel = await axios.get(
-            `http://localhost:4000/api/v1/product/search?category=${dataProducto.category}`
+            `/api/v1/product/search?category=${dataProducto.category}`
           );
           const productos_url = productosCarrusel.data.map(
             (product) => product.url_img
           );
 
           let infoImagenesServer = await axios.get(
-            `http://localhost:4000/api/v1/images/?imagenes=${productos_url}`
+            `/api/v1/images/?imagenes=${productos_url}`
           );
           let imagenes = infoImagenesServer.data.images;
 
@@ -107,11 +107,11 @@ function ProductModal({ modalOpen, handleModal }) {
       }
       axios
         .delete(
-          `http://localhost:4000/api/v1/product/erase/${productsCarrusel[index]._id}`
+          `/api/v1/product/erase/${productsCarrusel[index]._id}`
         )
         .then(() => {
           axios.delete(
-            `http://localhost:4000/api/v1/images/${productsCarrusel[index].url_img}`
+            `/api/v1/images/${productsCarrusel[index].url_img}`
           );
         })
         .then(() => {
@@ -121,11 +121,11 @@ function ProductModal({ modalOpen, handleModal }) {
     if (productsCarrusel.length === 1) {
       axios
         .delete(
-          `http://localhost:4000/api/v1/product/erase/${productsCarrusel[index]._id}`
+          `/api/v1/product/erase/${productsCarrusel[index]._id}`
         )
         .then(() => {
           axios.delete(
-            `http://localhost:4000/api/v1/images/${productsCarrusel[index].url_img}`
+            `/api/v1/images/${productsCarrusel[index].url_img}`
           );
         })
         .then(() => {

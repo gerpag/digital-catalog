@@ -32,16 +32,16 @@ function HamburguerMenu({ handleModal, modal }) {
 
   const handleLogOut = () => {
     axios
-      .get("/api/v1/user/logout", {
+      .get("http://localhost:4000/api/v1/user/logout", {
         withCredentials: true,
       })
       .then(() => {
-        dispatch(setUserData(null))
+        dispatch(setUserData(null));
         navigate("/");
       })
-    .catch((error) => {
-      console.log(error);
-    });
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (

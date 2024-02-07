@@ -33,7 +33,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get("/api/v1/user/user", {
+      .get("http://localhost:4000/api/v1/user/user", {
         headers: {
           Authorization: token,
         },
@@ -48,7 +48,7 @@ const App = () => {
 
   return (
     <>
-    <ToastContainer />
+      <ToastContainer />
       <NavBar handleModal={handleModal} modal={modalOpen} />
       {modalOpen && (
         <HamburguerMenu handleModal={handleModal} modal={modalOpen} />

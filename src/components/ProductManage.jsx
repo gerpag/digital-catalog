@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState } from "react";
+import axios from "axios";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ProductManage = () => {
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [subCategories, setSubCategories] = useState([]);
-  
 
-    const colours = [
+  const colours = [
     "amarillo",
     "verde",
     "turquesa",
@@ -24,7 +23,7 @@ const ProductManage = () => {
     "blanco",
     "crudo",
     "beige",
-    "marrón (ladrillo/madera)", 
+    "marrón (ladrillo/madera)",
     "plateado",
     "dorado",
     "negro",
@@ -32,7 +31,7 @@ const ProductManage = () => {
     "transparente",
     "multicolor",
   ];
-  
+
   const categories = [
     "aire_libre",
     "alfombras",
@@ -60,88 +59,178 @@ const ProductManage = () => {
     "tocador",
   ];
   const subcategories = {
-  aire_libre: ["picnic ,camping ,playa"],
-  alfombras: [],
-  bazar_cocina: ["bar", "botellas/jarras", "cubiertos/utensillos", "electro (tostadoras, licuadoras, jugueras, cafetera electrica, multipro)", "especieros", "frascos / latas", "fruteras / paneras", "fuentes / bandejas", "infusiones (te mate cafe, desayuno)", "ollas / sartenes", "tablas / apoyas", "termos", "vajilla", "vasos / copas", "varios bazar", "productos (packagins)"],
-  cesteria: [],
-  comercial: ["productos y packagins", "comercial varios"],
-  de_mano: ["agendas / libretas", "anteojos", "billeteras / monederos", "bijou", "bolsillo / cartera(polveras, espejitos, guantes, pañuelos, pastilleros, peines, algún maquillaje, abanicos)", "dinero / documentos", "llaves / llaveros / candados", "neceseurs", "paraguas", "tabaco (cigarillos, mecheros, cigarreras, etc)", "viaje (automovil, mapas, pasajes aeropuerto, etc)"],
-  deco: ["cajas / cofres", "ceniceros", "floreros / jarrones", "navidad / cotillon", "firguras / objetos", "platos / bandejas", "portaretratos", "souvenirs / colecciones", "velas / candelabros"],
-  deportes: [],
-  escolar: ["aula", "carpetas y cuadernos", "mochilas / portafolios", "utiles"],
-  oficina_escritorio: ["archivo", "mesa", "papeleria", "tecno (compus, maquina escribir, calculadoras)"],
-  hogar_jardin: ["miscelanea y mobiliario"],
-  infantil: ["decoracion", "juguetes", "juegos de mesa", "instrumentos", "muñecos / peluches / titeres", "sillas / rodados"],
-  lamparas: ["mesa", "techo", "pared"],
-  lectura_musica: ["libros / revistas", "discos / cintas"],
-  marroquineria: ["bolsos / mochilas", "carteras", "escolar / infantil", "equipaje", "portafolios"],
-  pared: ["cuadros", "diplomas", "espejos","laminas", "mascaras", "mapas / planos", "placas / carteleria", "platos", "tapices", "varios (calendarios, esterillas, grillas, especiero, etc"],
-  via_publica: ["patentes, escudos, señaletica"],
-  religioso: [],
-  relojes: ["mesa", "pared"],
-  salud: ["medicina", "farmacia"],
-  tecno_electro: ["electrodomesticos", "audio", "tecnologia"],
-  telefonos: [],
-  textil: ["acolachados/mantas", "almohadones", "carpetas/caminos", "cortinas", "manteles/individuales", "repasadores/manoplas", "sabanas", "toallas"],
-  tocador: ["aseo", "cosmetica", "frascos / perfumes", "hombre", "peluqueria", "varios tocador o baño"],
-};
+    aire_libre: ["picnic ,camping ,playa"],
+    alfombras: [],
+    bazar_cocina: [
+      "bar",
+      "botellas/jarras",
+      "cubiertos/utensillos",
+      "electro (tostadoras, licuadoras, jugueras, cafetera electrica, multipro)",
+      "especieros",
+      "frascos / latas",
+      "fruteras / paneras",
+      "fuentes / bandejas",
+      "infusiones (te mate cafe, desayuno)",
+      "ollas / sartenes",
+      "tablas / apoyas",
+      "termos",
+      "vajilla",
+      "vasos / copas",
+      "varios bazar",
+      "productos (packagins)",
+    ],
+    cesteria: [],
+    comercial: ["productos y packagins", "comercial varios"],
+    de_mano: [
+      "agendas / libretas",
+      "anteojos",
+      "billeteras / monederos",
+      "bijou",
+      "bolsillo / cartera(polveras, espejitos, guantes, pañuelos, pastilleros, peines, algún maquillaje, abanicos)",
+      "dinero / documentos",
+      "llaves / llaveros / candados",
+      "neceseurs",
+      "paraguas",
+      "tabaco (cigarillos, mecheros, cigarreras, etc)",
+      "viaje (automovil, mapas, pasajes aeropuerto, etc)",
+    ],
+    deco: [
+      "cajas / cofres",
+      "ceniceros",
+      "floreros / jarrones",
+      "navidad / cotillon",
+      "firguras / objetos",
+      "platos / bandejas",
+      "portaretratos",
+      "souvenirs / colecciones",
+      "velas / candelabros",
+    ],
+    deportes: [],
+    escolar: [
+      "aula",
+      "carpetas y cuadernos",
+      "mochilas / portafolios",
+      "utiles",
+    ],
+    oficina_escritorio: [
+      "archivo",
+      "mesa",
+      "papeleria",
+      "tecno (compus, maquina escribir, calculadoras)",
+    ],
+    hogar_jardin: ["miscelanea y mobiliario"],
+    infantil: [
+      "decoracion",
+      "juguetes",
+      "juegos de mesa",
+      "instrumentos",
+      "muñecos / peluches / titeres",
+      "sillas / rodados",
+    ],
+    lamparas: ["mesa", "techo", "pared"],
+    lectura_musica: ["libros / revistas", "discos / cintas"],
+    marroquineria: [
+      "bolsos / mochilas",
+      "carteras",
+      "escolar / infantil",
+      "equipaje",
+      "portafolios",
+    ],
+    pared: [
+      "cuadros",
+      "diplomas",
+      "espejos",
+      "laminas",
+      "mascaras",
+      "mapas / planos",
+      "placas / carteleria",
+      "platos",
+      "tapices",
+      "varios (calendarios, esterillas, grillas, especiero, etc",
+    ],
+    via_publica: ["patentes, escudos, señaletica"],
+    religioso: [],
+    relojes: ["mesa", "pared"],
+    salud: ["medicina", "farmacia"],
+    tecno_electro: ["electrodomesticos", "audio", "tecnologia"],
+    telefonos: [],
+    textil: [
+      "acolachados/mantas",
+      "almohadones",
+      "carpetas/caminos",
+      "cortinas",
+      "manteles/individuales",
+      "repasadores/manoplas",
+      "sabanas",
+      "toallas",
+    ],
+    tocador: [
+      "aseo",
+      "cosmetica",
+      "frascos / perfumes",
+      "hombre",
+      "peluqueria",
+      "varios tocador o baño",
+    ],
+  };
 
   const validationSchema = Yup.object({
-    image: Yup.mixed().required('La imagen es requerida'),
-    category: Yup.string().required('La categoría es requerida'),
+    image: Yup.mixed().required("La imagen es requerida"),
+    category: Yup.string().required("La categoría es requerida"),
     subCategory: Yup.string(),
-    
-    name: Yup.string().required('El nombre es requerido'),
-    material: Yup.string().required('El material es requerido'),
-    description: Yup.string().required('La descripción es requerida'),
-    colour: Yup.string().required('El color es requerido'),
-    dimensions: Yup.string().required('Las dimensiones son requeridas'),
-    quantity: Yup.number().required('La cantidad es requerida').positive('La cantidad debe ser un número positivo'),
+
+    name: Yup.string().required("El nombre es requerido"),
+    material: Yup.string().required("El material es requerido"),
+    description: Yup.string().required("La descripción es requerida"),
+    colour: Yup.string().required("El color es requerido"),
+    dimensions: Yup.string().required("Las dimensiones son requeridas"),
+    quantity: Yup.number()
+      .required("La cantidad es requerida")
+      .positive("La cantidad debe ser un número positivo"),
   });
 
   const formik = useFormik({
     initialValues: {
-      image: '',
-      category: '',
-      subCategory: '',
-      name: '',
-      material: '',
-      description: '',
-      colour: '',
-      dimensions: '',
+      image: "",
+      category: "",
+      subCategory: "",
+      name: "",
+      material: "",
+      description: "",
+      colour: "",
+      dimensions: "",
       quantity: 0,
-      url_img:"" 
+      url_img: "",
     },
     validationSchema,
-    onSubmit: async (values,  { resetForm }) => {
+    onSubmit: async (values, { resetForm }) => {
       try {
         const formdata = new FormData();
-       
-        
+
         Object.keys(values).forEach((key) => {
           formdata.append(key, values[key]);
         });
 
-        const response = await axios.post('/api/v1/product/add', formdata);
-     
-      toast.success('Artículo agregado exitosamente');
+        const response = await axios.post(
+          "http://localhost:4000/api/v1/product/add",
+          formdata
+        );
 
-      resetForm();
-      document.getElementById('image').value = null;
+        toast.success("Artículo agregado exitosamente");
 
+        resetForm();
+        document.getElementById("image").value = null;
       } catch (error) {
         const errDup = error.response.data.error.split(" ")[0];
-        console.error('Error adding product:', error.message);
-       
+        console.error("Error adding product:", error.message);
+
         if (errDup === "E11000") {
-          toast.error("EL nombre del artículo ya existe, debe ser diferente")
-          
-         
+          toast.error("EL nombre del artículo ya existe, debe ser diferente");
         } else if (error.response && error.response.data) {
-          console.error('Error adding product:', error.response.data.error);
-          toast.error('Error al agregar el producto');
+          console.error("Error adding product:", error.response.data.error);
+          toast.error("Error al agregar el producto");
         } else {
-          console.error('Error adding product:', error.message);
+          console.error("Error adding product:", error.message);
           toast.error("Error al agregar el producto");
         }
       }
@@ -151,31 +240,36 @@ const ProductManage = () => {
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
     const categorySubcategories = subcategories[selectedCategory] || [];
-    
+
     setSelectedCategory(selectedCategory);
 
-    formik.setFieldValue('category', selectedCategory);
-    formik.setFieldValue('subCategory', ''); 
+    formik.setFieldValue("category", selectedCategory);
+    formik.setFieldValue("subCategory", "");
 
-    setSubCategories(categorySubcategories.length > 0 ? categorySubcategories : ["Ninguna"]);
-
-
+    setSubCategories(
+      categorySubcategories.length > 0 ? categorySubcategories : ["Ninguna"]
+    );
   };
-
 
   return (
     <div className="flex items-center justify-center pt-[17vh]">
-      <form encType="multipart/form-data" onSubmit={formik.handleSubmit} className="bg-white p-8 shadow-md rounded max-w-md w-full">
+      <form
+        encType="multipart/form-data"
+        onSubmit={formik.handleSubmit}
+        className="bg-white p-8 shadow-md rounded max-w-md w-full"
+      >
         <div className="mb-3 flex items-center">
           <label htmlFor="image" className="w-1/3 pr-4 text-right">
             Imagen:
           </label>
           <input
-            id=  'image'
+            id="image"
             type="file"
             accept="image/*"
             name="image"
-            onChange={(event) => formik.setFieldValue('image', event.currentTarget.files[0])}
+            onChange={(event) =>
+              formik.setFieldValue("image", event.currentTarget.files[0])
+            }
             className="w-2/3 p-2 border border-gray-300 rounded"
           />
           {formik.touched.image && formik.errors.image ? (
@@ -190,12 +284,17 @@ const ProductManage = () => {
           <select
             name="category"
             value={formik.values.category}
-            onChange={(event) => { handleCategoryChange(event); formik.handleChange(event); }}
+            onChange={(event) => {
+              handleCategoryChange(event);
+              formik.handleChange(event);
+            }}
             onBlur={formik.handleBlur}
             className="w-2/3 p-2 border border-gray-300 rounded"
           >
             {!formik.values.category && (
-              <option value="" disabled>Selecciona una categoría</option>
+              <option value="" disabled>
+                Selecciona una categoría
+              </option>
             )}
             {categories.map((category) => (
               <option key={category} value={category}>
@@ -221,7 +320,9 @@ const ProductManage = () => {
               className="w-2/3 p-2 border border-gray-300 rounded"
             >
               {!subCategories.includes("Ninguna") && (
-                <option value="" disabled>Selecciona una subcategoría</option>
+                <option value="" disabled>
+                  Selecciona una subcategoría
+                </option>
               )}
               {subCategories.map((subCategory) => (
                 <option key={subCategory} value={subCategory}>
@@ -296,7 +397,9 @@ const ProductManage = () => {
             onBlur={formik.handleBlur}
             className="w-2/3 p-2 border border-gray-300 rounded"
           >
-            <option value="" disabled>Selecciona un color</option>
+            <option value="" disabled>
+              Selecciona un color
+            </option>
             {colours.map((color) => (
               <option key={color} value={color}>
                 {color}
@@ -343,7 +446,10 @@ const ProductManage = () => {
         </div>
 
         <div className="mt-4 flex justify-center">
-          <button type="submit" className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900">
+          <button
+            type="submit"
+            className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900"
+          >
             AGREGAR
           </button>
         </div>
@@ -354,7 +460,3 @@ const ProductManage = () => {
 };
 
 export default ProductManage;
-
-
-
-

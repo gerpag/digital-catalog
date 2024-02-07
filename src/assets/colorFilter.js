@@ -9,16 +9,27 @@ export const colorsOne = [
   { titulo: "bordó", color: "#800000" },
   { titulo: "violeta", color: "#800080" },
   { titulo: "rosa", color: "#FFC0CB" },
-];
-export const colorsTwo = [
   { titulo: "blanco", color: "#FFFFFF" },
   { titulo: "crudo", color: "#DCD0C0" },
+];
+export const colorsTwo = [
   { titulo: "beige", color: "#F5F5DC" },
   { titulo: "marrón (ladrillo/madera)", color: "#8B4513" },
-  { titulo: "plateado", color: "#C0C0C0" },
-  { titulo: "dorado", color: "#FFD700" },
+  {
+    titulo: "plateado",
+    color: "linear-gradient(to bottom,#808080, #FFFFFF, #808080, )",
+  },
+  { titulo: "dorado", color: "linear-gradient(to bottom, #FFD700, #B8860B)" },
   { titulo: "negro", color: "#000000" },
   { titulo: "gris", color: "#808080" },
-  { titulo: "transparente", color: "#000000" },
-  { titulo: "multicolor", color: "#000000" },
+  {
+    titulo: "transparente",
+    color:
+      "linear-gradient(to bottom,rgba(0,0,0,0.2), rgba(0,0,0,0), rgba(0,0,0,0.2))",
+  },
+  {
+    titulo: "multicolor",
+    color:
+      "linear-gradient(to bottom right, red,  orange,  rgb(228, 199, 36),  purple,  blue )",
+  },
 ];

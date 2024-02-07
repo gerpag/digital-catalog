@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -11,10 +11,9 @@
 body {
   background-color: #f2f2f2;
   font-family: "Poppins", sans-serif;
-  
 }
 
-.leftArrowCarrusel{
+.leftArrowCarrusel {
   margin-right: 1%;
   font-size: 3.5rem;
   position: fixed;
@@ -22,22 +21,21 @@ body {
   left: 20%;
 }
 
-.leftArrowCarrusel :hover{
+.leftArrowCarrusel :hover {
   scale: 1.1;
 }
 
-.rightArrowCarrusel{
+.rightArrowCarrusel {
   margin-left: 1%;
   font-size: 3.5rem;
   position: fixed;
   top: 50%;
   right: 20%;
-
 }
-.rightArrowCarrusel :hover{
+.rightArrowCarrusel :hover {
   scale: 1.1;
 }
-.tachitoBasura{
+.tachitoBasura {
   position: absolute;
   right: 6%;
   font-size: 1.4rem;
@@ -45,7 +43,6 @@ body {
   margin-top: 2%;
 }
 
-.tachitoBasura :hover{
-  color:red
+.tachitoBasura :hover {
+  color: red;
 }
-

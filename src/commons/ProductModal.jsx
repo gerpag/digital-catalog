@@ -28,13 +28,11 @@ function ProductModal({ modalOpen, handleModal }) {
   const [index, setIndex] = useState(0);
 
   const carruselMoveRight = () => {
-   
     if (index < productsCarrusel.length - 1) {
       setIndex(index + 1);
     }
   };
   const carruselMoveLeft = () => {
-   
     if (index > 0) {
       setIndex(index - 1);
     }
@@ -47,12 +45,12 @@ function ProductModal({ modalOpen, handleModal }) {
       try {
         if (id) {
           const productView = await axios.get(
-            `/api/v1/product/search?_id=${id}`
+            `http://localhost:4000/api/v1/product/search?_id=${id}`
           );
           let dataProducto = productView.data[0];
 
           const imageProductView = await axios.get(
-            `/api/v1/images/${dataProducto.url_img}`
+            `http://localhost:4000/api/v1/images/${dataProducto.url_img}`
           );
           dataProducto = {
             ...dataProducto,
@@ -62,14 +60,14 @@ function ProductModal({ modalOpen, handleModal }) {
           setProductInfo(dataProducto);
 
           const productosCarrusel = await axios.get(
-            `/api/v1/product/search?category=${dataProducto.category}`
+            `http://localhost:4000/api/v1/product/search?category=${dataProducto.category}`
           );
           const productos_url = productosCarrusel.data.map(
             (product) => product.url_img
           );
 
           let infoImagenesServer = await axios.get(
-            `/api/v1/images/?imagenes=${productos_url}`
+            `http://localhost:4000/api/v1/images/?imagenes=${productos_url}`
           );
           let imagenes = infoImagenesServer.data.images;
 
@@ -107,11 +105,11 @@ function ProductModal({ modalOpen, handleModal }) {
       }
       axios
         .delete(
-          `/api/v1/product/erase/${productsCarrusel[index]._id}`
+          `http://localhost:4000/api/v1/product/erase/${productsCarrusel[index]._id}`
         )
         .then(() => {
           axios.delete(
-            `/api/v1/images/${productsCarrusel[index].url_img}`
+            `http://localhost:4000/api/v1/images/${productsCarrusel[index].url_img}`
           );
         })
         .then(() => {
@@ -121,11 +119,11 @@ function ProductModal({ modalOpen, handleModal }) {
     if (productsCarrusel.length === 1) {
       axios
         .delete(
-          `/api/v1/product/erase/${productsCarrusel[index]._id}`
+          `http://localhost:4000/api/v1/product/erase/${productsCarrusel[index]._id}`
         )
         .then(() => {
           axios.delete(
-            `/api/v1/images/${productsCarrusel[index].url_img}`
+            `http://localhost:4000/api/v1/images/${productsCarrusel[index].url_img}`
           );
         })
         .then(() => {

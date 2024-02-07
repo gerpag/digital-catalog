@@ -11,6 +11,7 @@ import { rubros } from "../assets/categorias";
 import GrillaCategories from "./GrillaCategories";
 import { colorsOne, colorsTwo } from "../assets/colorFilter";
 import { categoriesWithSubcategories } from "../assets/catFilter";
+import { Tooltip } from "react-tooltip";
 
 const Rubros = () => {
   const location = useLocation();
@@ -46,7 +47,7 @@ const Rubros = () => {
   useEffect(() => {
     const productsFetch = async () => {
       try {
-        let url = "/api/v1/product/search";
+        let url = "http://localhost:4000/api/v1/product/search";
         let apiUrl = `${url}?=`;
 
         if (colorParam) {
@@ -68,7 +69,7 @@ const Rubros = () => {
         });
 
         let infoImagenesServer = await axios.get(
-          `/api/v1/images/?imagenes=${urlsImages}`
+          `http://localhost:4000/api/v1/images/?imagenes=${urlsImages}`
         );
 
         let imagenes = infoImagenesServer.data.images;
@@ -102,7 +103,7 @@ const Rubros = () => {
   const handleColor = async (color) => {
     try {
       const response = await axios.get(
-        `/api/v1/product/search?colour=${color}`
+        `http://localhost:4000/api/v1/product/search?colour=${color}`
       );
       setProducts(response.data);
 
@@ -117,7 +118,7 @@ const Rubros = () => {
 
   const handleCategory = async (category, subcategory) => {
     try {
-      let url = `/api/v1/product/search?category=${category}`;
+      let url = `http://localhost:4000/api/v1/product/search?category=${category}`;
 
       const response = await axios.get(url);
 
@@ -126,7 +127,7 @@ const Rubros = () => {
       });
 
       let infoImagenesServer = await axios.get(
-        `/api/v1/images/?imagenes=${urlsImages}`
+        `http://localhost:4000/api/v1/images/?imagenes=${urlsImages}`
       );
 
       let imagenes = infoImagenesServer.data.images;
@@ -225,12 +226,14 @@ const Rubros = () => {
           <div className="izquierda w-36 mr-32">
             <div>
               <h3 className="text-xl font-bold mb-3">Colores</h3>
-              <div className="w-[20vh]">
+              <div className="w-[25vh]">
                 <div>
                   {colorsOne.map((item, index) => (
                     <button
                       key={index}
-                      className=" w-5 h-5 m-1 rounded-full"
+                      className=" w-6 h-6 m-1 rounded-full border-[0.1px] border-gray-200"
+                      data-tooltip-id="my-tooltip"
+                      data-tooltip-content={item.titulo}
                       style={{ backgroundColor: item.color }}
                       onClick={() => handleColor(item.titulo)}
                     />
@@ -240,8 +243,21 @@ const Rubros = () => {
                   {colorsTwo.map((item, index) => (
                     <button
                       key={index}
-                      className={"w-5 h-5 m-1 rounded-full"}
-                      style={{ backgroundColor: item.color }}
+                      className="w-6 h-6 m-1 rounded-full border-[0.1px] border-gray-200"
+                      data-tooltip-id="my-tooltip"
+                      data-tooltip-content={item.titulo}
+                      style={{
+                        backgroundColor: item.color.startsWith(
+                          "linear-gradient"
+                        )
+                          ? item.color
+                          : item.color,
+                        backgroundImage: item.color.startsWith(
+                          "linear-gradient"
+                        )
+                          ? item.color
+                          : null,
+                      }}
                       onClick={() => handleColor(item.titulo)}
                     />
                   ))}
@@ -371,6 +387,7 @@ const Rubros = () => {
           </div>
         </div>
       </div>
+      <Tooltip id="my-tooltip" />
     </>
   );
 };

@@ -30,12 +30,13 @@ const NavBar = ({ handleModal, modal }) => {
 
   const handleLogOut = () => {
     axios
-      .get("/api/v1/user/logout", {
+      .get("http://localhost:4000/api/v1/user/logout", {
         withCredentials: true,
       })
       .then(() => {
         dispatch(setUserData(null));
-        document.cookie = "adminSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie =
+          "adminSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
         navigate("/");
       })
@@ -43,7 +44,6 @@ const NavBar = ({ handleModal, modal }) => {
         console.error(error);
       });
   };
- 
 
   return (
     <>

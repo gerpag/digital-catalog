@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -30,13 +30,13 @@ const Login = () => {
 
   const onSubmit = (values, { resetForm }) => {
     axios
-      .post("/api/v1/user/login", values)
+      .post("http://localhost:4000/api/v1/user/login", values)
       .then((res) => {
-        dispatch(setUserData({payload:res.data}));
+        dispatch(setUserData({ payload: res.data }));
         Cookies.set("token", res.data.token);
         toast.success(`Bienvenido ${res.data.email}`);
         resetForm();
-        navigate("/")
+        navigate("/");
       })
       .catch((err) => {
         toast.error(err.response.data.error);

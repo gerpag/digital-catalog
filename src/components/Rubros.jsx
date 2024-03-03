@@ -7,10 +7,11 @@ import ProductModal from "../commons/ProductModal";
 import { useDispatch } from "react-redux";
 import { setModalState } from "../../redux/modalSlice";
 import { arrayProductosConDataImagen } from "../assets/auxiliarFunctions";
-import { rubros } from "../assets/categorias";
+
 import GrillaCategories from "./GrillaCategories";
 import { colorsOne, colorsTwo } from "../assets/colorFilter";
-import { categoriesWithSubcategories } from "../assets/catFilter";
+import { rubros } from "../assets/categorias";
+
 import { Tooltip } from "react-tooltip";
 
 const Rubros = () => {
@@ -267,7 +268,7 @@ const Rubros = () => {
             <div className="categories-subcategories overflow-y-auto max-h-[60vh] w-[30vh]">
               <h3 className="text-xl font-bold mb-3 mt-3">Categorías</h3>
               <ul>
-                {categoriesWithSubcategories.map((categoryObj, index) => (
+                {rubros.map((categoryObj, index) => (
                   <React.Fragment key={index}>
                     <div
                       className={`hover:font-bold cursor-pointer ${

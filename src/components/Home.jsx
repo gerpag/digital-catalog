@@ -13,8 +13,8 @@ function Home({ modal }) {
         <div
           className={` w-[85vw] grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 xs:w-3/4 gap-3 mx-[auto] pt-[17vh] `}
         >
-          {rubros.map((categoria, i) => {
-            return <CardCategory key={i} categoria={categoria} />;
+          {rubros.map((category, i) => {
+            return <CardCategory key={i} category={category} />;
           })}
         </div>
       </div>

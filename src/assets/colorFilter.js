@@ -33,3 +33,4 @@ export const colorsTwo = [
       "linear-gradient(to bottom right, red,  orange,  rgb(228, 199, 36),  purple,  blue )",
   },
 ];
+

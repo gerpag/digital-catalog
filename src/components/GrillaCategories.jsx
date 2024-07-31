@@ -1,4 +1,3 @@
-import React from "react";
 import { rubros } from "../assets/categorias";
 import CardCategory from "../commons/CardCategory";
 

@@ -1,11 +1,12 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import ProductManage from "./components/ProductManage";
 import Rubros from "./components/Rubros";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import Info from "./components/Info";
+import TermAndCond from "./components/TermAndCond";
 import Contacto from "./components/Contacto";
 import Footer from "./components/footer";
 import Forbidden from "./components/Forbbiden";
@@ -64,6 +65,7 @@ const App = () => {
 
         <Route path="/rubros" element={<Rubros />} />
         <Route path="/info" element={<Info />} />
+        <Route path="/terminos-y-condiciones" element={<TermAndCond />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/login" element={<Login />} />
       </Routes>

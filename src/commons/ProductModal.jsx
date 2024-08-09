@@ -1,4 +1,4 @@
-import { useState } from "react";
+  import { useState } from "react";
 import {
   FaTimes,
   FaChevronLeft,
@@ -147,52 +147,57 @@ function ProductModal({ modalOpen, handleModal }) {
           <div
             className={`${
               modalDelete
-                ? "opacity-50 brightness-50 pointer-events-none bg-black "
-                : "bg-[#f2f2f2] "
-            }h-[90vh] w-[40vw] fixed top-[5%] left-[30%] z-40 rounded-md`}
+                ? "opacity-50 brightness-50 pointer-events-none bg-black"
+                : "bg-[#f2f2f2]"
+            } fixed inset-0 flex items-center justify-center z-40`}
           >
-            <div className="w-full flex justify-end">
-              <Link to={`/rubros`}>
-                <FaTimes
-                  onClick={() => {
-                    handleModal();
-                    setProductCarrusel([]);
-                  }}
-                  style={{ marginRight: "1%", fontSize: "1.5rem" }}
-                />
-              </Link>
-            </div>
-
-            {productsCarrusel.length > 0 && (
-              <div className="w-[90%] h-[85%] mx-auto">
-                <p className="text-[1.3rem] mb-[2%]">
-                  {`${productsCarrusel[index].name} (${productsCarrusel[index].dimensions})`.toUpperCase()}
-                </p>
-                {adminLogged && (
-                  <FaTrash
-                    onClick={handleModalDelete}
-                    className="tachitoBasura"
+            <div className="relative bg-white rounded-md shadow-lg w-full max-w-4xl mx-4 p-4 md:w-[40vw] md:top-[5%]">
+              <div className="flex justify-end">
+                <Link to={`/rubros`}>
+                  <FaTimes
+                    onClick={() => {
+                      handleModal();
+                      setProductCarrusel([]);
+                    }}
+                    className="text-gray-700 text-xl cursor-pointer"
                   />
-                )}
-                <img
-                  src={`data:image/jpeg;base64,${productsCarrusel[index].image}`}
-                  className="w-full h-full object-fit object-center  inset-0  transition-transform duration-1000 rounded-md"
-                />
+                </Link>
               </div>
-            )}
+
+              {productsCarrusel.length > 0 && (
+                <div className="flex flex-col items-center">
+                  <p className="text-lg font-semibold mb-4 text-center">
+                    {`${productsCarrusel[index].name} (${productsCarrusel[index].dimensions})`.toUpperCase()}
+                  </p>
+                  {adminLogged && (
+                    <FaTrash
+                      onClick={handleModalDelete}
+                      className="text-red-500 cursor-pointer mb-4"
+                    />
+                  )}
+                  <div className="relative w-full h-[50vh] md:h-[70vh]">
+                    <img
+                      src={`data:image/jpeg;base64,${productsCarrusel[index].image}`}
+                      className="w-full h-full object-contain rounded-md"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {!modalDelete && (
+                <>
+                  <FaChevronLeft
+                    onClick={carruselMoveLeft}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 text-2xl cursor-pointer text-gray-700"
+                  />
+                  <FaChevronRight
+                    onClick={carruselMoveRight}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-2xl cursor-pointer text-gray-700"
+                  />
+                </>
+              )}
+            </div>
           </div>
-          {!modalDelete && (
-            <>
-              <FaChevronLeft
-                onClick={carruselMoveLeft}
-                className="leftArrowCarrusel"
-              />
-              <FaChevronRight
-                onClick={carruselMoveRight}
-                className="rightArrowCarrusel"
-              />
-            </>
-          )}
         </>
       )}
     </>
@@ -200,3 +205,5 @@ function ProductModal({ modalOpen, handleModal }) {
 }
 
 export default ProductModal;
+
+

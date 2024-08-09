@@ -1,4 +1,3 @@
-import React from 'react';
 import { Mail, Instagram, MapPin, Phone } from 'react-feather';
 
 const Contacto = () => {
@@ -32,7 +31,7 @@ const Contacto = () => {
             <Mail className="mr-2" /> <a href="mailto:polirubroprops@gmail.com"><span className='text-blue-500'>polirubroprops@gmail.com</span></a> 
           </li>
           <li className="flex items-center mb-2">
-            <Instagram className="mr-2" /> <a target="_blank" href="https://www.instagram.com/polirubroprops/">@polirubroprops</a>
+            <Instagram className="mr-2" /> <a target="_blank" rel="noreferrer" href="https://www.instagram.com/polirubroprops/">@polirubroprops</a>
           </li>
           <li className="flex items-center">
             <Phone className="mr-2" /> 11 5 943 4362 / 11 5 121 2889

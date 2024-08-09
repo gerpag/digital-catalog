@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Info = () => {
   return (
@@ -13,7 +13,7 @@ const Info = () => {
         <ol className="list-decimal list-inside mb-4 text-3xl w-[100vh]">
           <li>Mándanos un mail a  <a href="mailto:polirubroprops@gmail.com"> <span className='text text-blue-700 ' >polirubroprops@gmail.com</span></a>  con la selección de utilería que te interesa; indicando fechas, productora y nombre del proyecto.</li>
           <li>Te enviamos un presupuesto con validez de 7 días.</li>
-          <li>Nos confirmas el pedido para reservarlo, aceptando los <a target="_blank" href='http://localhost:5174/terminos-y-condiciones' ><span className="text text-blue-700 underline">Términos y Condiciones</span></a> de alquiler.</li>
+          <li>Nos confirmas el pedido para reservarlo, aceptando los <Link target="_blank" rel="noreferrer" to='/terminos-y-condiciones'><span className="text text-blue-700 underline">Términos y Condiciones</span></Link>  de alquiler.</li>
           <li>Retiran según cita previa, dejando garantía por el total.</li>
         </ol>
       </div>
